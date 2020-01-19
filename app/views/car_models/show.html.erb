@@ -1,0 +1,12 @@
+<h1>MODELO:</h1>
+
+<h2><%= @car_model.name %></h2>
+<h3>Detalhes:</h3>
+<p>Ano: <%= @car_model.year %></p>
+<p>Fabricante: <%= @car_model.manufacturer.name %></p>
+<p>Motorização: <%= @car_model.motorization %></p>
+<p>Categoria: <%= @car_model.car_category.name %></p>
+<p>Tipo de combustível: <%= @car_model.fuel_type %></p>
+
+<%= link_to 'Editar', edit_car_model_path(@car_model) %>
+<%= link_to 'Voltar', car_models_path %>

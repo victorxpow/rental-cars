@@ -1,0 +1,8 @@
+<h1>Lista de Filiais</h1>
+<%= link_to 'Cadastrar Filial', new_subsidiary_path %>
+
+<% @subsidiaries.each do |subsidiary| %>
+    <%= link_to subsidiary.name, subsidiary %>
+    <%= subsidiary.cnpj %>
+    <%= subsidiary.address %>
+<% end %>

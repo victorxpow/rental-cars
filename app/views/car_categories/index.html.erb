@@ -1,0 +1,7 @@
+<h1>Categorias de carro</h1>
+<p><%= link_to 'Cadastrar categoria de carro', new_car_category_path %></p>
+<ul>
+<% @car_categories.each do |car_category| %>
+    <li><%= link_to car_category.name, car_category %></li>
+<% end %>
+</ul>
