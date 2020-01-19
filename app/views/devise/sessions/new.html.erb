@@ -1,26 +1,52 @@
-<h2>Log in</h2>
+<html class="ls-theme-gray">
+<head>
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>Tela de Login</title>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <link href="http://assets.locaweb.com.br/locastyle/3.10.1/stylesheets/locastyle.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="documentacao documentacao_exemplos documentacao_exemplos_login-screen documentacao_exemplos_login-screen_index">
 
+<div class="ls-login-parent">
+  <div class="ls-login-inner">
+    <div class="ls-login-container">
+      <div class="ls-login-box">
+  <h1 class="ls-login-logo"><img title="Logo login" src="http://opensource.locaweb.com.br/locawebstyle/assets/images/locastyle/logo-locaweb.png" /></h1>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <fieldset>
 
-  <div class="field">
-    <%= f.label :password, 'Senha' %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+      <label class="ls-label">
+        <b class="ls-label-text ls-hidden-accessible">Email</b>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"ls-login-bg-user ls-field-lg", type:"text", placeholder:"E-mail" %>
+      </label>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
+
+
+      <label class="ls-label">
+        <b class="ls-label-text ls-hidden-accessible">Senha</b>
+        <div class="ls-prefix-group ls-field-lg">
+        <%= f.password_field :password, autocomplete: "current-password", class:"ls-login-bg-password", placeholder:"Senha", required: true %>
+          <a class="ls-label-text-prefix ls-toggle-pass ls-ico-eye" data-toggle-class="ls-ico-eye, ls-ico-eye-blocked" data-target="#password_field" href="#"></a>
+        </div>
+
+        
+      </label>
+
+      <p><a class="ls-login-forgot" href="forgot-password">Esqueci minha senha</a></p>
+      <%= f.submit "Entrar", class:"ls-btn-primary ls-btn-block ls-btn-lg" %>
+
+      <p class="ls-txt-center ls-login-signup">Não possui um usuário na Locaweb? <a href="#">Cadastre-se agora</a></p>
+
+    </fieldset>
+  </form>
   <% end %>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Entrar" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+<script src="http://opensource.locaweb.com.br/locawebstyle/assets/javascripts/libs/jquery-2.1.0.min.js" type="text/javascript"></script><script src="http://opensource.locaweb.com.br/locawebstyle/assets/javascripts/locastyle.js" type="text/javascript"></script>
+
+</body>
+</html>
