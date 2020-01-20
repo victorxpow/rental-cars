@@ -51,12 +51,6 @@ feature 'User search rental' do
     expect(page).to have_content('VKN0002')
   end
 
-  scenario 'and must be authenticated via button' do
-    visit root_path
-
-    expect(page).not_to have_content('Locações')
-  end
-
   scenario 'and must be authenticated via route' do
     visit rentals_path
 

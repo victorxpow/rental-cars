@@ -11,6 +11,7 @@ class RentalsController < ApplicationController
     @rentals = Rental.where('code LIKE ?', "%#{params[:q].upcase}%")
     
   end
+  
   def create
     @rental = Rental.new(rental_params)
     @rental.code = SecureRandom.hex(6).upcase
@@ -20,14 +21,17 @@ class RentalsController < ApplicationController
     @car_category = CarCategory.all
     render :new
   end
+
   def show
     @rental = Rental.find(params[:id])
   end
+
   def begin
     @rental = Rental.find(params[:id])
     @cars = Car.where(car_model: @rental.car_category.car_models)
                .where(status: 0)
   end
+
   def confirm_begin
     @car = Car.find(params[:id])
     @rental = Rental.find(params[:id])
@@ -36,6 +40,7 @@ class RentalsController < ApplicationController
                       daily_rate: @car.car_model.car_category.daily_rate,
                       start_mileage: @car.mileage)
   end
+
   private
   
   def rental_params

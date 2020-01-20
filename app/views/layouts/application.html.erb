@@ -33,20 +33,13 @@
     <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
       <a href="#" class="ls-ico-user">
         <img src="/locawebstyle/assets/images/locastyle/avatar-example.jpg" alt="" />
-        <span class="ls-name">João Kennedy</span>
-        (johnkennedy)
+        <span class="ls-name">Teste</span>
       </a>
 
       <nav class="ls-dropdown-nav ls-user-menu">
         <ul>
           <li><a href="#">Meus dados</a></li>
-          <li><a href="#">Faturas</a></li>
-          <li><a href="#">Planos</a></li>
-        <% if user_signed_in? %>
           <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
-        <% else %>
-          <%= link_to 'Entrar', new_user_session_path  %>
-        <% end %>
         </li>
 
          </ul>
@@ -80,6 +73,7 @@
             <li><%= link_to 'Modelos de carro', car_models_path  %></li>
             <li><%= link_to 'Clientes', clients_path  %></li>
             <li><%= link_to 'Locações', rentals_path  %></li>
+            <li><%= link_to 'Carros', cars_path  %></li>
             
            <li>
             <a href="#" class="ls-ico-cog" title="Configurações">Configurações</a>
@@ -107,10 +101,12 @@
 
     <%= alert %>
     <%= notice %>
-        <%= yield %>
-    <% else %>
     <%= yield %>
-<% end %>
+    <% else %>
+    <%= alert %>
+    <%= notice %>
+    <%= yield %>
+    <% end %>
       </div>
 
 
