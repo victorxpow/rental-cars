@@ -5,7 +5,6 @@ feature 'User sign in' do
     User.create!(email: 'teste@teste.com', password: '123456')
 
     visit root_path
-    click_on 'Entrar'
 
     within 'form' do
       fill_in 'Email', with: 'teste@teste.com'
@@ -24,13 +23,13 @@ feature 'User sign in' do
     User.create!(email: 'teste@teste.com', password: '123456')
 
     visit root_path
-    click_on 'Entrar'
 
     within 'form' do
       fill_in 'Email', with: 'teste@teste.com'
       fill_in 'Senha', with: '123456'
       click_on 'Entrar'
     end
+
       click_on 'Sair'
 
       expect(page).to have_content('Signed out successfully')

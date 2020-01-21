@@ -17,7 +17,7 @@ feature 'User view client' do
   scenario 'and must be authenticated via button' do
     visit root_path
 
-    expect(page).not_to have_content('Clientes')
+    expect(page).not_to have_button('Clientes')
   end
 
   scenario 'and must be authenticated via route' do
