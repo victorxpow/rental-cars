@@ -9,5 +9,7 @@ class CarCategory < ApplicationRecord
                         presence: {message: 'Seguro contra terceiros não pode ficar vazio'},
                         numericality: {greater_than: 0}
 
-    
+    def daily_rated
+        daily_rate + car_insurance + third_party_insurance
+    end
 end

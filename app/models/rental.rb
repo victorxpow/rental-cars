@@ -4,6 +4,7 @@ class Rental < ApplicationRecord
   belongs_to :user                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 
   has_many :car_rentals
+  has_many :cars, through: :car_rentals
 
 
   validate :date_init_less_than_final, on: [:new, :create]

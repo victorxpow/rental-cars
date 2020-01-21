@@ -26,7 +26,7 @@ feature 'Admin view Car Model' do
     scenario 'and must be authenticated via button' do
         visit root_path
 
-        expect(page).not_to have_content('Modelos de carro')
+        expect(page).not_to have_button('Modelos de carro')
     end
 
     scenario 'and must be authenticated via route' do

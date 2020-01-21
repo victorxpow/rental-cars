@@ -30,8 +30,6 @@ feature 'User sign in' do
       click_on 'Entrar'
     end
 
-      click_on 'Sair'
-
       expect(page).to have_content('Signed out successfully')
       expect(page).to have_link('Entrar')
       expect(page).not_to have_link('Sair')
