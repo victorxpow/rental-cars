@@ -1,0 +1,14 @@
+<h1>Categoria:</h1>
+<% if flash[:alert] %>
+<%= flash[:alert] %>
+<% end %>
+<%= @car.car_model.name %>
+<%= @car.car_model.car_category.name %>
+<%= @car.license_plate %>
+<%= @car.color %>
+<%= @car.mileage %>
+
+<%= link_to 'Editar', edit_car_path(@car) %>
+
+<%= link_to 'Deletar', car_path(@car), method: :delete,
+data: {confirm: 'Tem certeza?'} %>

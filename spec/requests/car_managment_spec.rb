@@ -51,7 +51,7 @@ describe 'Car Menagement' do
       it 'should return rendered car successfully' do
         car = FactoryBot.create(:car)
           
-        post api_v1_cars_path, params: {  car_model_id: car_model.id,
+        post api_v1_cars_path, params: {  car_model_id: car.car_model.id,
                                           license_plate: car.license_plate,
                                           mileage: car.mileage,
                                           color: car.color
@@ -60,7 +60,7 @@ describe 'Car Menagement' do
         json = JSON.parse(response.body, symbolize_names: true)
         
         expect(response).to have_http_status(201)
-        expect(json[:car_model_id]).to eq(car_model.id)
+        expect(json[:car_model_id]).to eq(car.car_model.id)
         expect(json[:license_plate]).to eq(car.license_plate)
         expect(json[:mileage]).to eq(car.mileage.to_s)
         expect(json[:color]).to eq(car.color)
