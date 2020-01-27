@@ -14,8 +14,7 @@ feature 'User sign in' do
 
     expect(page).to have_content('Signed in successfully')
     expect(page).to have_link('Sair')
-    expect(page).not_to have_link('Entrar')
-
+    expect(page).not_to have_button('Entrar')
     expect(current_path).to eq(root_path)
   end
 
@@ -30,10 +29,13 @@ feature 'User sign in' do
       click_on 'Entrar'
     end
 
-      expect(page).to have_content('Signed out successfully')
-      expect(page).to have_link('Entrar')
-      expect(page).not_to have_link('Sair')
+    within 'div#dropdw' do
+      click_on 'Sair'
+    end
       
-      expect(current_path).to eq(root_path)
+      
+    expect(page).not_to have_link('Sair')
+    expect(page).to have_button('Entrar')
+    expect(current_path).to eq(new_user_session_path)
   end
 end

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
-
+gem 'factory_bot_rails'
 gem 'devise'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.4', '>= 4.4.1'

@@ -48,10 +48,10 @@ ActiveRecord::Schema.define(version: 2020_01_17_233820) do
   create_table "cars", force: :cascade do |t|
     t.string "license_plate"
     t.string "color"
-    t.integer "car_model_id"
     t.decimal "mileage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "car_model_id"
     t.integer "status", default: 0
     t.index ["car_model_id"], name: "index_cars_on_car_model_id"
   end

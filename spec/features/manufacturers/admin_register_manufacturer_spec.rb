@@ -3,12 +3,11 @@ require 'rails_helper'
 feature 'Admin register manufacturer' do
   scenario 'successfully' do
     user = User.create!(email: 'teste@teste.com', password: '123456')
-    login_as(user, scope: :user)
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
     click_on 'Registrar fabricante'
-
     fill_in 'Nome', with: 'Fiat'
     click_on 'Enviar'
 
@@ -17,7 +16,7 @@ feature 'Admin register manufacturer' do
 
   scenario 'and must be unique' do
     user = User.create!(email: 'teste@teste.com', password: '123456')
-    Manufacturer.create(name: 'Fiat')
+    FactoryBot.create(:manufacturer)
 
     login_as(user, scope: :user)
     visit root_path
@@ -31,6 +30,7 @@ feature 'Admin register manufacturer' do
 
   scenario 'and fields must be filled' do
     user = User.create!(email: 'teste@teste.com', password: '123456')
+
     login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
@@ -46,5 +46,4 @@ feature 'Admin register manufacturer' do
 
     expect(current_path).to eq(new_user_session_path)
   end
-
 end

@@ -1,5 +1,6 @@
 class ManufacturersController < ApplicationController
-    before_action :authenticate_user!, only:[:index,:show,:new, :edit]
+    before_action :authenticate_user!
+
     def index
         @manufacturers = Manufacturer.all
     end
@@ -18,33 +19,20 @@ class ManufacturersController < ApplicationController
 
     def create
         @manufacturer = Manufacturer.new(manufacturer_params) 
-
-        if @manufacturer.save
-            redirect_to @manufacturer
-        else
-            render :new
-        end
+        return redirect_to @manufacturer if @manufacturer.save
+        render :new
     end
 
     def update
         @manufacturer = Manufacturer.find(params[:id])
-        
-        if @manufacturer.update(manufacturer_params)
-            redirect_to @manufacturer
-        else
-            render :edit
-        end
-
+        return redirect_to @manufacturer if @manufacturer.update(manufacturer_params)
+        render :edit
     end
 
     def destroy
         @manufacturer = Manufacturer.find(params[:id])
-        if @manufacturer.destroy
-            flash[:alert] = "Fabricante excluído com sucesso"
-            redirect_to manufacturers_path
-        else
-            redirect_to :show
-        end
+        return redirect_to manufacturers_path flash[:alert] = "Fabricante excluído com sucesso" if @manufacturer.destroy
+        redirect_to :show
     end
 
     private
