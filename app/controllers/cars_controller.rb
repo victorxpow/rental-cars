@@ -8,6 +8,7 @@ class CarsController < ApplicationController
     end
 
     def new
+        @car_models = CarModel.all
         @car = Car.new
     end
 
@@ -18,6 +19,7 @@ class CarsController < ApplicationController
     def create
         @car = Car.new(car_params) 
         return redirect_to @car if @car.save
+        @car_model = CarModel.all
         render :new
     end
 

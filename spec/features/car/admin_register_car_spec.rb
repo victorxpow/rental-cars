@@ -14,19 +14,19 @@ feature 'Admin register Car' do
 
         login_as(user, scope: :user)
         visit root_path
-        click_on 'Categorias de carro'
-        click_on 'Cadastrar categoria de carro'
+        click_on 'Carros'
+        click_on 'Cadastrar carro'
 
         fill_in 'Placa', with: 'ABC1234'
         fill_in 'Cor', with: 'Branco'
-        select "AM", from: 'Categoria de carro'
-        fill_in 'Quilometragem', with: 10000
+        fill_in 'Quilometragem', with: '10000'
+        select "Kwid", from: 'Nome do modelo'
 
         click_on 'Enviar'
-
+        
         expect(page).to have_content('ABC1234')
         expect(page).to have_content('Branco')
-        expect(page).to have_content('AM')
+        expect(page).to have_content('Kwid')
         expect(page).to have_content(10000)
 
     end
