@@ -1,5 +1,4 @@
 class SubsidiariesController < ApplicationController
-    before_action :authenticate_user!, only:[:index, :show, :new, :edit]
     def index
         @subsidiaries = Subsidiary.all
     end
@@ -37,12 +36,10 @@ class SubsidiariesController < ApplicationController
 
     def destroy
         @subsidiary = Subsidiary.find(params[:id])
-        if @subsidiary.destroy
-            flash[:notice] = "Filial excluída com sucesso"
-            redirect_to subsidiaries_path
-        else
-            redirect_to :show
-        end
+        return redirect_to subsidiaries_path,
+                notice: "Filial excluída com sucesso" if @subsidiary.destroy
+        
+        redirect_to :show
     end
     private
 

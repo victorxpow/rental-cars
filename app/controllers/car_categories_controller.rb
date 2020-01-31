@@ -1,5 +1,4 @@
 class CarCategoriesController < ApplicationController
-    before_action :authenticate_user!, only: [:index, :show, :new, :edit]
     def index
         @car_categories = CarCategory.all
     end
@@ -28,13 +27,10 @@ class CarCategoriesController < ApplicationController
 
     def update
         @car_category = CarCategory.find(params[:id])
-
-        if @car_category.update(car_category_params)
-            flash[:alert] = 'Editado com sucesso'
-            redirect_to @car_category
-        else
+        return redirect_to car_categories_path flash[:alert] = 'Editado com sucesso' if @car_category.update(car_category_params)
+            
+            
             render :edit
-        end
     end
 
     def destroy

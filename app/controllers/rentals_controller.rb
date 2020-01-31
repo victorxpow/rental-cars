@@ -1,5 +1,4 @@
 class RentalsController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :search, :new]
   def index
   end
   def new
