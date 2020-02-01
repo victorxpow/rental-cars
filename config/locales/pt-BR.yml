@@ -7,6 +7,59 @@ pt-BR:
         restrict_dependent_destroy:
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
+    models:
+      car_rentals: Locação Efetivada
+      user: Usúario
+      manufacturer: Fabrincate
+      subsidiary: Filial
+      rentals: Locação Inicial
+      car_model: Modelo de carro
+      car_category: Categoría de carro
+      car: Carro
+      client: Cliente
+    attributes:
+      car_rentals: 
+        car_id: ID do Carro
+        rental_id: ID da Locação
+        daily_rate: Preço Total
+        start_mileage: Quilometrágem Inícial
+      user:
+        email: Email
+        password: Senha
+      manufacturer:
+        name: Nome
+      subsidiary:
+        name: Nome
+        cnpj: CNPJ
+        address: Endereço
+      rentals:
+        code: Código
+        start_date: Data Início
+        end_date: Data Retorno
+        client_id: ID do Cliente
+        car_category_id: ID da Categoria
+        user_id: ID do Usuário
+      car_model:
+        name: Nome
+        year: Ano
+        manufacturer_id: ID do Fabricante
+        car_category_id: ID da Categoria
+        fuel_type: Tipo de combustível
+      car_category:
+        name: Nome
+        daily_rate: Diária
+        car_insurance: Seguro do Carro
+        third_party_insurance: Seguro para Terceiros
+      car:
+        license_plate: Placa do Carro
+        color: Cor do Carro
+        mileage: Quilometrágem
+        car_model_id: ID do Modelo
+        status: Status
+      client:
+        name: Nome
+        cpf: CPF
+        email: Email
   date:
     abbr_day_names:
     - dom
