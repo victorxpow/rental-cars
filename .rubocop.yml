@@ -8,7 +8,6 @@ inherit_mode:
 AllCops:
   TargetRubyVersion: 2.6
   Exclude:
-    - 'spec/**/*.rb'
     - 'bin/**/*'
     - 'vendor/**/*'
     - 'db/**/*'

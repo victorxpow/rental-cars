@@ -1,5 +1,12 @@
 ---
 pt-BR:
+  subsidiaries:
+    create:
+      success: 'Filial registrada com sucesso'
+    update:
+      success: 'Filial atualizada com sucesso'
+    destroy:
+      success: 'Filial deletada com sucesso'
   activerecord:
     errors:
       messages:
@@ -11,7 +18,9 @@ pt-BR:
       car_rentals: Locação Efetivada
       user: Usúario
       manufacturer: Fabrincate
-      subsidiary: Filial
+      subsidiary:
+        one: 'Filial'
+        other: 'Filiais'
       rentals: Locação Inicial
       car_model: Modelo de carro
       car_category: Categoría de carro

@@ -1,30 +1,30 @@
 require 'rails_helper'
 
 feature 'Admin edit subsidiary' do
-    scenario 'successfully' do
-        user = User.create!(email: 'teste@teste.com', password: '123456')
-        create(:subsidiary)
-        
-        login_as(user, scope: :user)
-        visit root_path
-        click_on 'Filiais'
-        click_on 'Saúde'
-        click_on 'Editar'
+  scenario 'successfully' do
+    user = User.create!(email: 'teste@teste.com', password: '123456')
+    create(:subsidiary)
 
-        fill_in 'Nome', with: 'Paraíso'
-        fill_in 'CNPJ', with: '00.000.000/0000-01'
-        fill_in 'Endereço', with: 'Avenue Paraíso'
+    login_as(user, scope: :user)
+    visit root_path
+    click_on 'Filiais'
+    click_on 'Saúde'
+    click_on 'Editar'
 
-        click_on 'Enviar'
+    fill_in 'Nome', with: 'Paraíso'
+    fill_in 'CNPJ', with: '00.000.000/0000-01'
+    fill_in 'Endereço', with: 'Avenue Paraíso'
 
-        expect(page).to have_content('Paraíso')
-        expect(page).to have_content('00.000.000/0000-01')
-        expect(page).to have_content('Avenue Paraíso')
-    end
+    click_on 'Enviar'
 
-    scenario 'and must be authenticate to edit' do
-        visit edit_subsidiary_path(00000)
+    expect(page).to have_content('Paraíso')
+    expect(page).to have_content('00.000.000/0000-01')
+    expect(page).to have_content('Avenue Paraíso')
+  end
 
-        expect(current_path).to eq(new_user_session_path)
-    end
+  scenario 'and must be authenticate to edit' do
+    visit edit_subsidiary_path(0o0000)
+
+    expect(current_path).to eq(new_user_session_path)
+  end
 end
