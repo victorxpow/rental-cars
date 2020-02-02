@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Admin edit manufacturer' do
   scenario 'successfully' do
     user = User.create!(email: 'teste@teste.com', password: '123456')
-    FactoryBot.create(:manufacturer)
+    create(:manufacturer)
     
     login_as(user, scope: :user)
 
@@ -21,7 +21,7 @@ feature 'Admin edit manufacturer' do
     user = User.create!(email: 'teste@teste.com', password: '123456')
     login_as(user, scope: :user)
 
-    FactoryBot.create(:manufacturer)
+    create(:manufacturer)
 
     visit root_path
     click_on 'Fabricantes'

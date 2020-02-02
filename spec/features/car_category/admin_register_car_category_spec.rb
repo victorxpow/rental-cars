@@ -56,9 +56,9 @@ feature 'Admin register Car Category' do
         fill_in 'Seguro contra terceiros', with: -1
         click_on 'Enviar'
 
-        expect(page).to have_content('Daily rate must be greater than 0')
-        expect(page).to have_content('Car insurance must be greater than 0')
-        expect(page).to have_content('Third party insurance must be greater than 0')
+        expect(page).to have_content('Diária deve ser maior que 0')
+        expect(page).to have_content('Seguro do Carro deve ser maior que 0')
+        expect(page).to have_content('Seguro para Terceiros deve ser maior que 0')
     end
 
     scenario 'and must be authenticated to register' do

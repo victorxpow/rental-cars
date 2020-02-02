@@ -30,13 +30,13 @@ feature 'Admin register subsidiary' do
         click_on 'Enviar'
 
         expect(page).to have_content('Você deve corrigir o(s) seguinte(s) erro(s)')
-        expect(page).to have_content('Name não pode estar vazio')
-        expect(page).to have_content('Cnpj não pode estar vazio')
-        expect(page).to have_content('Address não pode estar vazio')
+        expect(page).to have_content('Nome não pode estar vazio')
+        expect(page).to have_content('CNPJ não pode estar vazio')
+        expect(page).to have_content('Endereço não pode estar vazio')
     end
 
     scenario 'and must be unique' do
-        Subsidiary.create!(name: 'Paraíso', cnpj: '00.000.000/0000-01', address: 'Avenue Paraíso')
+        create(:subsidiary)
         user = User.create!(email: 'teste@teste.com', password: '123456')
 
         login_as(user, scope: :user)
@@ -44,7 +44,7 @@ feature 'Admin register subsidiary' do
         click_on 'Filiais'
         click_on 'Cadastrar Filial'
         
-        fill_in 'Nome', with: 'Paraíso'
+        fill_in 'Nome', with: 'Saúde'
         fill_in 'CNPJ', with: '00.000.000/0000-01'
         fill_in 'Endereço', with: 'Avenue Paraíso'
         
