@@ -18,7 +18,8 @@ class SubsidiariesController < ApplicationController
   def update
     @subsidiary = Subsidiary.find(params[:id])
 
-    return redirect_to @subsidiary, notice: t('.success') if @subsidiary.update(subsidiary_params)
+    return redirect_to @subsidiary,
+    notice: t('.success') if @subsidiary.update(subsidiary_params)
 
     render :edit
   end
@@ -34,7 +35,8 @@ class SubsidiariesController < ApplicationController
   def destroy
     @subsidiary = Subsidiary.find(params[:id])
 
-    return redirect_to subsidiaries_path, notice: t('.success') if @subsidiary.destroy
+    return redirect_to subsidiaries_path, 
+    notice: t('.success') if @subsidiary.destroy
 
     redirect_to :show
   end

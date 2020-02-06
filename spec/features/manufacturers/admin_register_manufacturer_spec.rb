@@ -9,7 +9,7 @@ feature 'Admin register manufacturer' do
     click_on 'Fabricantes'
     click_on 'Registrar fabricante'
     fill_in 'Nome', with: 'Fiat'
-    click_on 'Enviar'
+    click_on 'Criar Fabricante'
 
     expect(page).to have_content('Fiat')
   end
@@ -23,7 +23,7 @@ feature 'Admin register manufacturer' do
     click_on 'Fabricantes'
     click_on 'Registrar fabricante'
     fill_in 'Nome', with: 'Fiat'
-    click_on 'Enviar'
+    click_on 'Criar Fabricante'
 
     expect(page).to have_content('Fornecedor já cadastrado')
   end
@@ -36,7 +36,7 @@ feature 'Admin register manufacturer' do
     click_on 'Fabricantes'
     click_on 'Registrar fabricante'
 
-    click_on 'Enviar'
+    click_on 'Criar Fabricante'
 
     expect(page).to have_content('Nome não pode ficar vazio')
   end

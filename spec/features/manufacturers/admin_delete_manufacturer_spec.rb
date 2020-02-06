@@ -11,7 +11,7 @@ feature 'Admin delete manufacturer' do
         click_on 'Fiat'
         click_on 'Deletar'
 
-        expect(page).to have_content('Fabricante excluído com sucesso')
+        expect(page).to have_content('Fabricante deletado com sucesso')
         expect(page).to_not have_content('Fiat')
     end
 

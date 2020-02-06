@@ -1,4 +1,4 @@
-<h1>Fornecedor:</h1>
+<h1><%= @manufacturers.human_attribute_name(:manufacturer) %>:</h1>
 
 <%= @manufacturer.name %>
 <%= link_to 'Editar', edit_manufacturer_path(@manufacturer) %>

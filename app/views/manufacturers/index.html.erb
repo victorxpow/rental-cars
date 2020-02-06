@@ -1,7 +1,7 @@
-<h1>Lista de Fabricantes:</h1>
+<h1>Lista de <%= @manufacturers.human_attribute_name(:manufacturer) %>:</h1>
 <p><%= link_to 'Registrar fabricante', new_manufacturer_path %><br></p>
 <ul>
 <% @manufacturers.each do |manufacturer| %>
-    <li>Fabricante: <%= link_to manufacturer.name, manufacturer %></li>
+    <li><%= @manufacturers.human_attribute_name('manufacturer') %>: <%= link_to manufacturer.name, manufacturer %></li>
 <% end %>
 </ul>

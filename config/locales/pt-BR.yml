@@ -7,6 +7,13 @@ pt-BR:
       success: 'Filial atualizada com sucesso'
     destroy:
       success: 'Filial deletada com sucesso'
+  manufacturers:
+    create:
+      success: 'Fabricante registrado com sucesso'
+    update:
+      success: 'Fabricante atualizado com sucesso'
+    destroy:
+      success: 'Fabricante deletado com sucesso'
   activerecord:
     errors:
       messages:
@@ -17,7 +24,9 @@ pt-BR:
     models:
       car_rentals: Locação Efetivada
       user: Usúario
-      manufacturer: Fabrincate
+      manufacturer:
+        one: 'Fabricante'
+        others: 'Fabricantes'
       subsidiary:
         one: 'Filial'
         other: 'Filiais'
@@ -36,6 +45,9 @@ pt-BR:
         email: Email
         password: Senha
       manufacturer:
+        manufacturer:
+          one: 'Fabricante'
+          others: 'Fabricantes'
         name: Nome
       subsidiary:
         name: Nome
