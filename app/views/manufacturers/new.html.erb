@@ -1,4 +1,4 @@
-<%= form_with model: @manufacturer, local: true do |form| %>
+<h1 class="title">Registrar Fabricante</h1>
 
 <% if @manufacturer.errors.any? %>
     <% @manufacturer.errors.full_messages.each do |msg| %>
@@ -6,10 +6,4 @@
     <% end %>
 <% end %>
 
-    <p>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-    </p>
-
-    <%= form.submit %>
-<% end %>
+<%= render partial: 'form', locals: { customer: @manufacturer } %> 

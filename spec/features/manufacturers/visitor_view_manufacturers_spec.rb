@@ -3,12 +3,14 @@ require 'rails_helper'
 feature 'Visitor view manufacturers' do
   scenario 'successfully' do
     user = User.create!(email:'teste@teste.com', password: '123456')
-    create(:manufacturer)
-
-    login_as(user,scope: :user)
+    manufacturer = create(:manufacturer)
+    
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
-    click_on 'Fiat'
+    within("tr#manufacturer-#{manufacturer.id}") do
+      find('.ls-ico-zoomin').click
+    end
 
     expect(page).to have_content('Fiat')
     expect(page).to have_link('Voltar')
@@ -16,15 +18,17 @@ feature 'Visitor view manufacturers' do
 
   scenario 'and return to home page' do
     user = User.create!(email:'teste@teste.com', password: '123456')
-    create(:manufacturer)
-
-    login_as(user,scope: :user)
+    manufacturer = create(:manufacturer)
+    
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
-    click_on 'Fiat'
+    within("tr#manufacturer-#{manufacturer.id}") do
+      find('.ls-ico-zoomin').click
+    end
     click_on 'Voltar'
 
-    expect(current_path).to eq root_path
+    expect(current_path).to eq manufacturers_path
   end
 
   scenario 'and must be authenticated via button' do

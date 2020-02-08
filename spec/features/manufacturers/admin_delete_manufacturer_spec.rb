@@ -3,13 +3,16 @@ require 'rails_helper'
 feature 'Admin delete manufacturer' do
     scenario 'successfully' do
         user = User.create!(email: 'teste@teste.com', password: '123456')
-        create(:manufacturer)
+        manufacturer = create(:manufacturer)
 
         login_as(user, scope: :user)
         visit root_path
         click_on 'Fabricantes'
-        click_on 'Fiat'
-        click_on 'Deletar'
+        within("tr#manufacturer-#{manufacturer.id}") do
+            find('.ls-ico-zoomin').click
+          end
+          click_on 'Apagar'
+      
 
         expect(page).to have_content('Fabricante deletado com sucesso')
         expect(page).to_not have_content('Fiat')

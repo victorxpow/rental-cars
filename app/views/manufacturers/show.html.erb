@@ -1,7 +1,21 @@
-<h1><%= @manufacturers.human_attribute_name(:manufacturer) %>:</h1>
+<h1 class="title">Fabricante:</h1>
 
-<%= @manufacturer.name %>
-<%= link_to 'Editar', edit_manufacturer_path(@manufacturer) %>
-<%= link_to 'Deletar', manufacturer_path(@manufacturer), method: :delete,
-data: {confirm: 'Tem certeza?'} %>
-<%= link_to 'Voltar', root_path %>
+<h2 class="subtitle"><%= @manufacturer.name %></h2>
+
+<table class="ls-table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @manufacturer.name %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to 'Editar', edit_manufacturer_path(@manufacturer), class: "ls-btn", style: "color: rgb(79, 89, 216);" %>
+<%= link_to 'Apagar', manufacturer_path(@manufacturer), method: :delete, class: "ls-btn", style: "color: rgb(105, 30, 0);",
+data: { confirm: "Tem certeza de que deseja deletar #{@manufacturer.name}?"} %>
+<%= link_to 'Voltar', manufacturers_path, class:"ls-btn" %>

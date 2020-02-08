@@ -5,17 +5,14 @@ class ManufacturersController < ApplicationController
 
   def show
     @manufacturer = Manufacturer.find(params[:id])
-    @manufacturers = Manufacturer.all
   end
 
   def new
     @manufacturer = Manufacturer.new
-    @manufacturers = Manufacturer.all
   end
 
   def edit
     @manufacturer = Manufacturer.find(params[:id])
-    @manufacturers = Manufacturer.all
   end
 
   def create

@@ -7,9 +7,9 @@ feature 'Admin register manufacturer' do
     login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
-    click_on 'Registrar fabricante'
+    click_on 'Registrar Novo'
     fill_in 'Nome', with: 'Fiat'
-    click_on 'Criar Fabricante'
+    click_on 'Salvar'
 
     expect(page).to have_content('Fiat')
   end
@@ -21,11 +21,11 @@ feature 'Admin register manufacturer' do
     login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
-    click_on 'Registrar fabricante'
+    click_on 'Registrar Novo'
     fill_in 'Nome', with: 'Fiat'
-    click_on 'Criar Fabricante'
+    click_on 'Salvar'
 
-    expect(page).to have_content('Fornecedor já cadastrado')
+    expect(page).to have_content('Nome já está em uso')
   end
 
   scenario 'and fields must be filled' do
@@ -34,11 +34,11 @@ feature 'Admin register manufacturer' do
     login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
-    click_on 'Registrar fabricante'
+    click_on 'Registrar Novo'
 
-    click_on 'Criar Fabricante'
+    click_on 'Salvar'
 
-    expect(page).to have_content('Nome não pode ficar vazio')
+    expect(page).to have_content('Nome não pode ficar em branco')
   end
 
   scenario 'and must be authenticated to register' do

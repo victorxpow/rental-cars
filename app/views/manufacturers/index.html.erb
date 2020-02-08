@@ -1,7 +1,25 @@
-<h1>Lista de <%= @manufacturers.human_attribute_name(:manufacturer) %>:</h1>
-<p><%= link_to 'Registrar fabricante', new_manufacturer_path %><br></p>
-<ul>
-<% @manufacturers.each do |manufacturer| %>
-    <li><%= @manufacturers.human_attribute_name('manufacturer') %>: <%= link_to manufacturer.name, manufacturer %></li>
-<% end %>
-</ul>
+<h1 class="title">Fabricantes</h1>
+
+<%= link_to 'Registrar Novo', new_manufacturer_path, class: 'ls-btn-primary button' %>
+
+<table class="ls-table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @manufacturers.each do |manufacturer| %>
+      <tr id="manufacturer-<%= manufacturer.id %>">
+        <td><%= manufacturer.name %></td>
+        <td>
+          <%= link_to '', manufacturer_path(manufacturer), class: "ls-ico-zoomin" %>
+          <%= link_to '', edit_manufacturer_path(manufacturer), class: "ls-ico-pencil" %>
+          <%= link_to '', manufacturer_path(manufacturer), method: :delete, class: "ls-ico-remove",
+          data: { confirm: "Tem certeza de que deseja deletar #{manufacturer.name}?"} %>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
