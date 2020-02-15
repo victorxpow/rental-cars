@@ -41,7 +41,13 @@ feature 'Admin register manufacturer' do
     expect(page).to have_content('Nome não pode ficar em branco')
   end
 
-  scenario 'and must be authenticated to register' do
+  scenario 'and must be authenticated via button' do
+    visit root_path
+
+    expect(page).not_to have_link('Fabricantes')
+  end
+
+  scenario 'and must be authenticated via route' do
     visit new_manufacturer_path
 
     expect(current_path).to eq(new_user_session_path)

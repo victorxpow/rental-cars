@@ -1,10 +1,23 @@
+<div class="ls-title-intro ls-ico-text">Filial: <%= Subsidiary.human_attribute_name(@subsidiary.name) %></div>
 
-<h1>
-<%= @subsidiary.name %>
-</h1>
+<table class="ls-table">
+  <thead>
+    <tr>
+      <th><%= Subsidiary.human_attribute_name(:name) %></th>
+      <th><%= Subsidiary.human_attribute_name(:cnpj) %></th>
+      <th><%= Subsidiary.human_attribute_name(:address) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @subsidiary.name %></td>
+      <td><%= @subsidiary.cnpj %></td>
+      <td><%= @subsidiary.address %></td>
+    </tr>
+  </tbody>
+</table>
 
-<%= @subsidiary.cnpj %>
-<%= @subsidiary.address %>
-<%= link_to 'Editar', edit_subsidiary_path(@subsidiary) %>
-<%= link_to 'Deletar', subsidiary_path(@subsidiary), method: :delete,
-data: {confirm: 'Tem certeza?'} %>
+<%= link_to 'Editar', edit_subsidiary_path(@subsidiary), class: "ls-btn blue-theme" %>
+<%= link_to 'Deletar', subsidiary_path(@subsidiary), method: :delete, class: "ls-btn red-delete", data: {confirm: 'Tem certeza?'} %>
+
+<hr>

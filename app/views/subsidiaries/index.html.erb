@@ -1,8 +1,28 @@
-<h1>Lista de Filiais</h1>
-<%= link_to 'Cadastrar Filial', new_subsidiary_path %>
+<h1 class="ls-title-intro ls-ico-text"><%= Subsidiary.model_name.human(count: 2) %></h1>
+<%= link_to 'Registrar Novo', new_subsidiary_path, class: 'ls-btn-primary button' %>
 
-<% @subsidiaries.each do |subsidiary| %>
-    <%= link_to subsidiary.name, subsidiary %>
-    <%= subsidiary.cnpj %>
-    <%= subsidiary.address %>
-<% end %>
+<table class="ls-table">
+    <thead>
+      <tr>
+      <th><%= Subsidiary.human_attribute_name(:name) %></th>
+      <th><%= Subsidiary.human_attribute_name(:cnpj) %></th>
+      <th><%= Subsidiary.human_attribute_name(:address) %></th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @subsidiaries.each do |subsidiary| %>
+      <tr id="subsidiary-<%= subsidiary.id %>">
+        <td><%= subsidiary.name %></td>
+        <td><%= subsidiary.cnpj %></td>
+        <td><%= subsidiary.address %></td>
+        <td>
+          <%= link_to '', subsidiary_path(subsidiary), class: "ls-ico-zoomin" %>
+          <%= link_to '', edit_subsidiary_path(subsidiary), class: "ls-ico-pencil" %>
+          <%= link_to '', subsidiary_path(subsidiary), method: :delete, class: "ls-ico-remove",
+          data: { confirm: "Tem certeza de que deseja deletar #{subsidiary.name}?"} %>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>

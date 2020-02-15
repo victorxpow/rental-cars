@@ -1,11 +1,11 @@
-<h1 class="title">Fabricante:</h1>
+<h1 class="ls-title-intro ls-ico-text"><%= Manufacturer.model_name.human(count: 1) %></h1>
 
 <h2 class="subtitle"><%= @manufacturer.name %></h2>
 
 <table class="ls-table">
   <thead>
     <tr>
-      <th>Nome</th>
+      <th><%= Manufacturer.human_attribute_name(:name) %></th>
     </tr>
   </thead>
   <tbody>

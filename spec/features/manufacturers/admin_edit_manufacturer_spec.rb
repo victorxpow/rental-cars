@@ -4,7 +4,7 @@ feature 'Admin edit manufacturer' do
   scenario 'successfully' do
     user = User.create!(email: 'teste@teste.com', password: '123456')
     manufacturer = create(:manufacturer)
-    
+
     login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
@@ -39,7 +39,7 @@ feature 'Admin edit manufacturer' do
   scenario 'and fields must be filled' do
     user = User.create!(email: 'teste@teste.com', password: '123456')
     manufacturer = create(:manufacturer)
-    
+
     login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
@@ -53,8 +53,14 @@ feature 'Admin edit manufacturer' do
     expect(page).to have_content('Nome não pode ficar em branco')
   end
 
+  scenario 'and must be authenticated via button' do
+    visit root_path
+
+    expect(page).not_to have_link('Fabricantes')
+  end
+
   scenario 'and must be authenticated to edit' do
-    visit edit_manufacturer_path(00000)
+    visit edit_manufacturer_path(0o0000)
 
     expect(current_path).to eq(new_user_session_path)
   end

@@ -2,9 +2,9 @@ require 'rails_helper'
 
 feature 'Visitor view manufacturers' do
   scenario 'successfully' do
-    user = User.create!(email:'teste@teste.com', password: '123456')
+    user = create(:user)
     manufacturer = create(:manufacturer)
-    
+
     login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
@@ -17,9 +17,9 @@ feature 'Visitor view manufacturers' do
   end
 
   scenario 'and return to home page' do
-    user = User.create!(email:'teste@teste.com', password: '123456')
+    user = create(:user)
     manufacturer = create(:manufacturer)
-    
+
     login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
@@ -44,9 +44,8 @@ feature 'Visitor view manufacturers' do
   end
 
   scenario 'and must be authenticated to view details' do
-    visit manufacturer_path(00000)
+    visit manufacturer_path(0o0000)
 
     expect(current_path).to eq(new_user_session_path)
   end
-
 end

@@ -1,0 +1,18 @@
+<%= form_with model: @subsidiary, class: 'ls-form ls-form-horizontal row', local: true do |f| %>
+  <div class = 'ls-label col-md-12'>
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: 'ex Pedro' %></p>
+    <p>
+    <%= f.label :cnpj %>
+    <%= f.text_field :cnpj, placeholder: '99.999.999/9999-99' %></p>
+    <p>
+    <%= f.label :address %>
+    <%= f.text_field :address, placeholder: 'ex Rua Antunes, 234' %></p>
+  </div>
+  <div class="button">
+    <div class='ls-actions-btn button'>
+        <%= f.submit 'Salvar', class: 'ls-btn', style: "color: rgb(79, 89, 216);" %>
+        <%= link_to 'Voltar', url_for(:back), class:"ls-btn" %>
+    </div>
+  </div>
+<% end %>

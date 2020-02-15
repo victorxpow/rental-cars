@@ -26,7 +26,7 @@ pt-BR:
       user: Usúario
       manufacturer:
         one: 'Fabricante'
-        others: 'Fabricantes'
+        other: 'Fabricantes'
       subsidiary:
         one: 'Filial'
         other: 'Filiais'

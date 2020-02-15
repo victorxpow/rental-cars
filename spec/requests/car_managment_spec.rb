@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Car Menagement' do
   context 'show' do
     it 'renders a json succssfully' do
-      car = FactoryBot.create(:car)
+      car = create(:car)
 
       get api_v1_car_path(car)
       json = JSON.parse(response.body, symbolize_names: true)
@@ -18,9 +18,9 @@ describe 'Car Menagement' do
   end
     context 'index' do
       it 'renders a json succssfully' do
-        car = FactoryBot.create(:car)
-        another_car = FactoryBot.create(:car, license_plate: 'ABC 1266', color: 'prata', car_model_id: 1, mileage: 15)
-        other_car = FactoryBot.create(:car, license_plate: 'CGQ 2866', color: 'vermelho', car_model_id: 1, mileage: 155)
+        car = create(:car)
+        another_car = create(:car, license_plate: 'ABC 1266', color: 'prata', car_model_id: 1, mileage: 15)
+        other_car = create(:car, license_plate: 'CGQ 2866', color: 'vermelho', car_model_id: 1, mileage: 155)
 
         get api_v1_cars_path()
         json = JSON.parse(response.body, symbolize_names: true)
@@ -47,7 +47,7 @@ describe 'Car Menagement' do
 
     context 'create' do
       it 'should return rendered car successfully' do
-        car = FactoryBot.create(:car)
+        car = create(:car)
 
         post api_v1_cars_path, params: {  car_model_id: car.car_model.id,
                                           license_plate: car.license_plate,
