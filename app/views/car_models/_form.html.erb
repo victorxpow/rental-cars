@@ -1,0 +1,34 @@
+<%= form_with model: @car_model, class: 'ls-form ls-form-horizontal row', local: true do |f| %>
+  <div class = 'ls-label col-md-12'>
+    <p>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </p>
+    <p>
+        <%= f.label :year %>
+        <%= f.text_field :year %>
+    </p>
+    <p>
+        <%= f.label :manufacturer_id %>
+        <%= f.collection_select :manufacturer_id, @manufacturers, :id, :name%>
+    </p>
+    <p>
+        <%= f.label :motorization %>
+        <%= f.text_field :motorization %>
+    </p>
+    <p>
+        <%= f.label :car_category_id %>
+        <%= f.collection_select :car_category_id, @car_categories, :id, :name%>
+    </p>
+    <p>
+        <%= f.label :fuel_type %>
+        <%= f.text_field :fuel_type%>
+    </p>
+  </div>
+  <div class="button">
+    <div class='ls-actions-btn button'>
+        <%= f.submit 'Salvar', class: 'ls-btn', style: "color: rgb(79, 89, 216);" %>
+        <%= link_to 'Voltar', url_for(:back), class:"ls-btn" %>
+    </div>
+  </div>
+<% end %>

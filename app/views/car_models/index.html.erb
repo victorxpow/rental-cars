@@ -1,7 +1,34 @@
-<h1>Modelos de carro</h1>
-<p><%= link_to 'Registrar modelo de carro', new_car_model_path %></p>
-<ul>
-<% @car_models.each do |car_model| %>
-    <li><%= link_to car_model.name, car_model %></li>
-<% end %>
-</ul>
+<h1 class="ls-title-intro ls-ico-text"><%= CarModel.model_name.human(count: 2) %></h1>
+<%= link_to 'Registrar Novo', new_car_model_path, class: 'ls-btn-primary button' %>
+
+<table class="ls-table">
+    <thead>
+      <tr>
+      <th><%= CarModel.human_attribute_name(:name) %></th>
+      <th><%= CarModel.human_attribute_name(:year) %></th>
+      <th><%= CarModel.human_attribute_name(:manufacturer_id) %></th>
+      <th><%= CarModel.human_attribute_name(:motorization) %></th>
+      <th><%= CarModel.human_attribute_name(:car_category_id) %></th>
+      <th><%= CarModel.human_attribute_name(:fuel_type) %></th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @car_models.each do |car_model| %>
+      <tr id="car_model-<%= car_model.id %>">
+        <td><%= car_model.name %></td>
+        <td><%= car_model.year %></td>
+        <td><%= car_model.manufacturer.name %></td>
+        <td><%= car_model.motorization %></td>
+        <td><%= car_model.car_category.name %></td>
+        <td><%= car_model.fuel_type %></td>
+        <td>
+          <%= link_to '', car_model_path(car_model), class: "ls-ico-zoomin" %>
+          <%= link_to '', edit_car_model_path(car_model), class: "ls-ico-pencil" %>
+          <%= link_to '', car_model_path(car_model), method: :delete, class: "ls-ico-remove",
+          data: { confirm: "Tem certeza de que deseja deletar #{car_model.name}?"} %>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :manufacturers
   resources :subsidiaries
   resources :car_categories
-  resources :car_models, only: %i[index show new create edit update]
+  resources :car_models
   resources :clients, only: %i[index show new create]
   resources :cars
   resources :rentals, only: %i[index show new create] do

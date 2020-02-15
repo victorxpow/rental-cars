@@ -21,6 +21,13 @@ pt-BR:
       success: 'Categoria de carro atualizado com sucesso'
     destroy:
       success: 'Categoria de carro deletado com sucesso'
+  car_models:
+    create:
+      success: 'Modelo do carro registrado com sucesso'
+    update:
+      success: 'Modelo do carro atualizado com sucesso'
+    destroy:
+      success: 'Modelo do carro deletado com sucesso'
   activerecord:
     errors:
       messages:
@@ -82,9 +89,10 @@ pt-BR:
       car_model:
         name: Nome
         year: Ano
-        manufacturer_id: ID do Fabricante
-        car_category_id: ID da Categoria
+        manufacturer_id: Fabricante
+        car_category_id: Categoria do carro
         fuel_type: Tipo de combustível
+        motorization: Motorização
       car_category:
         name: Nome
         daily_rate: Diária
