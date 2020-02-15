@@ -14,6 +14,13 @@ pt-BR:
       success: 'Fabricante atualizado com sucesso'
     destroy:
       success: 'Fabricante deletado com sucesso'
+  car_categories:
+    create:
+      success: 'Categoria de carro registrado com sucesso'
+    update:
+      success: 'Categoria de carro atualizado com sucesso'
+    destroy:
+      success: 'Categoria de carro deletado com sucesso'
   activerecord:
     errors:
       messages:
@@ -23,20 +30,32 @@ pt-BR:
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
     models:
       car_rentals: Locação Efetivada
-      user: Usúario
+      user:
+        one: 'Usúario'
+        other: 'Usúarioes'
       manufacturer:
         one: 'Fabricante'
         other: 'Fabricantes'
       subsidiary:
         one: 'Filial'
         other: 'Filiais'
-      rentals: Locação Inicial
-      car_model: Modelo de carro
-      car_category: Categoría de carro
-      car: Carro
-      client: Cliente
+      rentals:
+        one: 'Locação'
+        other: 'Locações'
+      car_model:
+        one: 'Modelo de carro'
+        other: 'Modelos de carros'
+      car_category:
+        one: 'Categoría de carro'
+        other: 'Categorías de carros'
+      car:
+        one: 'Carro'
+        other: 'Carros'
+      client:
+        one: 'Cliente'
+        other: 'Clientes'
     attributes:
-      car_rentals: 
+      car_rentals:
         car_id: ID do Carro
         rental_id: ID da Locação
         daily_rate: Preço Total
@@ -69,7 +88,7 @@ pt-BR:
       car_category:
         name: Nome
         daily_rate: Diária
-        car_insurance: Seguro do Carro
+        car_insurance: Seguro do automóvel
         third_party_insurance: Seguro para Terceiros
       car:
         license_plate: Placa do Carro

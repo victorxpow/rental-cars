@@ -1,13 +1,25 @@
-<h1>Categoria:</h1>
-<% if flash[:alert] %>
-<%= flash[:alert] %>
-<% end %>
-<%= @car_category.name %>
-<%= @car_category.daily_rate %>
-<%= @car_category.car_insurance %>
-<%= @car_category.third_party_insurance %>
+<div class="ls-title-intro ls-ico-text">Filial: <%= CarCategory.human_attribute_name(@car_category.name) %></div>
 
-<%= link_to 'Editar', edit_car_category_path(@car_category) %>
+<table class="ls-table">
+  <thead>
+    <tr>
+      <th><%= CarCategory.human_attribute_name(:name) %></th>
+      <th><%= CarCategory.human_attribute_name(:daily_rate) %></th>
+      <th><%= CarCategory.human_attribute_name(:car_insurance) %></th>
+      <th><%= CarCategory.human_attribute_name(:third_party_insurance) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @car_category.name %></td>
+      <td><%= @car_category.daily_rate %></td>
+      <td><%= @car_category.car_insurance %></td>
+      <td><%= @car_category.third_party_insurance %></td>
+    </tr>
+  </tbody>
+</table>
 
-<%= link_to 'Deletar', car_category_path(@car_category), method: :delete,
-data: {confirm: 'Tem certeza?'} %>
+<%= link_to 'Editar', edit_car_category_path(@car_category), class: "ls-btn blue-theme" %>
+<%= link_to 'Deletar', car_category_path(@car_category), method: :delete, class: "ls-btn red-delete", data: {confirm: 'Tem certeza?'} %>
+
+<hr>

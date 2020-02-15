@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-feature 'Admin edit Car Category' do
-    scenario 'successfully' do
+feature 'Admin edit Car' do
+    xscenario 'successfully' do
         user = User.create!(email: 'teste@teste.com', password: '123456')
         CarCategory.create!(name:'Sedã', daily_rate: 30, car_insurance: 300, third_party_insurance: 300)
         
         login_as(user, scope: :user)
         visit root_path
         
-        click_on 'Categorias de carro'
+        click_on 'Carros'
         click_on 'Sedã'
         click_on 'Editar'
 

@@ -1,7 +1,30 @@
-<h1>Categorias de carro</h1>
-<p><%= link_to 'Cadastrar categoria de carro', new_car_category_path %></p>
-<ul>
-<% @car_categories.each do |car_category| %>
-    <li><%= link_to car_category.name, car_category %></li>
-<% end %>
-</ul>
+<h1 class="ls-title-intro ls-ico-text"><%= CarCategory.model_name.human(count: 2) %></h1>
+<%= link_to 'Registrar Novo', new_car_category_path, class: 'ls-btn-primary button' %>
+
+<table class="ls-table">
+    <thead>
+      <tr>
+      <th><%= CarCategory.human_attribute_name(:name) %></th>
+      <th><%= CarCategory.human_attribute_name(:daily_rate) %></th>
+      <th><%= CarCategory.human_attribute_name(:car_insurance) %></th>
+      <th><%= CarCategory.human_attribute_name(:third_party_insurance) %></th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @car_categories.each do |car_category| %>
+      <tr id="car_category-<%= car_category.id %>">
+        <td><%= car_category.name %></td>
+        <td><%= car_category.daily_rate %></td>
+        <td><%= car_category.car_insurance %></td>
+        <td><%= car_category.third_party_insurance %></td>
+        <td>
+          <%= link_to '', car_category_path(car_category), class: "ls-ico-zoomin" %>
+          <%= link_to '', edit_car_category_path(car_category), class: "ls-ico-pencil" %>
+          <%= link_to '', car_category_path(car_category), method: :delete, class: "ls-ico-remove",
+          data: { confirm: "Tem certeza de que deseja deletar #{car_category.name}?"} %>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
