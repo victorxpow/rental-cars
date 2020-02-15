@@ -8,7 +8,7 @@
 
 Manufacturer.create!([
     { name: 'Volkswagen' },
-    { name: 'Fiat' },
+    { name: 'Renault' },
     { name: 'Chevrolet' }
 ])
 
@@ -25,7 +25,7 @@ CarModel.create!([
 
 Subsidiary.create!([
     { name: 'Santo André', cnpj: '11.222.333/0000-99', address: 'Av. D. Pedro II, 100' },
-    { name: 'Osasco', cnpj: '22.333.444/0000-88', address: 'Av. D. Pedro II, 100' }
+    { name: 'Osasco', cnpj: '22.333.444/0000-88', address: 'Av. Pedro I, 150' }
 ])
 
 User.create!([
@@ -39,7 +39,18 @@ Client.create!([
 ])
 
 Rental.create!([
-    { code: 'JPR0000', start_date: Date.current, end_date: 1.day.from_now, client_id: 1, car_category_id: 1 },
-    { code: 'LAR1111', start_date: Date.current, end_date: 2.day.from_now, client_id: 1, car_category_id: 2 },
-    { code: 'SAM0000', start_date: Date.current, end_date: 3.day.from_now, client_id: 2, car_category_id: 2 },
+    { code: 'JPR0000', start_date: Date.current, end_date: 1.day.from_now, client_id: 1, car_category_id: 1, user_id: 1 },
+    { code: 'LAR1111', start_date: Date.current, end_date: 2.day.from_now, client_id: 1, car_category_id: 2, user_id: 1 },
+    { code: 'SAM0000', start_date: Date.current, end_date: 3.day.from_now, client_id: 2, car_category_id: 2, user_id: 1 },
+])
+
+Car.create!([
+    { license_plate: 'ABC-1234', color: 'Prata', mileage: 15_000, status: 0, car_model_id: 1},
+    { license_plate: 'DEF-2345', color: 'Branco', mileage: 25_000, status: 0, car_model_id: 2},
+    { license_plate: 'GHI-3456', color: 'Preto', mileage: 35_000, status: 0, car_model_id: 3}
+])
+
+CarRental.create!([
+    { daily_rate: 100.0, start_mileage: 15_000, car_id: 1, rental_id: 1 },
+    { daily_rate: 110.0, start_mileage: 25_000, car_id: 2, rental_id: 2 }
 ])
