@@ -18,7 +18,7 @@ CarCategory.create!([
 ])
 
 CarModel.create!([
-    { name: 'Gol', year: '2001', motorization: '1.8', fuel_type: 'Gasolina', manufacturer_id: 1, car_category_id: 1 },
+    { name: 'Gol', year: '2014', motorization: '1.8', fuel_type: 'Gasolina', manufacturer_id: 1, car_category_id: 1 },
     { name: 'Uno', year: '2020', motorization: '1.0', fuel_type: 'Flex', manufacturer_id: 2, car_category_id: 2 },
     { name: 'Onix', year: '2019', motorization: '1.6', fuel_type: 'Flex', manufacturer_id: 3, car_category_id: 1 }
 ])
