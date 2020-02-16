@@ -1,0 +1,9 @@
+<h1 class="ls-title-intro ls-ico-text">Editar <%= Rental.model_name.human(count: 1) %></h1>
+
+<% if @rental.errors.any? %>
+    <% @rental.errors.full_messages.each do |msg| %>
+        <%= msg %>
+    <% end %>
+<% end %>
+
+<%= render partial: 'form', locals: { customer: @rental } %> 

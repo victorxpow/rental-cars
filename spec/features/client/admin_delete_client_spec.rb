@@ -12,7 +12,7 @@ feature 'Admin delete client' do
       find('.ls-ico-zoomin').click
     end
     click_on 'Deletar'
-    
+
     expect(page).to have_content('Cliente deletado com sucesso')
     expect(page).to_not have_content(client)
     expect(page).to_not have_content(client.name)

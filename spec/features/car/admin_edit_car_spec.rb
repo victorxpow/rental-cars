@@ -1,27 +1,33 @@
 require 'rails_helper'
 
 feature 'Admin edit Car' do
-    xscenario 'successfully' do
-        user = User.create!(email: 'teste@teste.com', password: '123456')
-        CarCategory.create!(name:'Sedã', daily_rate: 30, car_insurance: 300, third_party_insurance: 300)
-        
-        login_as(user, scope: :user)
-        visit root_path
-        
-        click_on 'Carros'
-        click_on 'Sedã'
-        click_on 'Editar'
+  scenario 'successfully' do
+    user = create(:user)
+    car = create(:car)
 
-        fill_in 'Nome', with: 'SUV compacto'
-        click_on 'Enviar'
-
-        expect(page).to have_content('Editado com sucesso')
-        expect(page).to have_content('SUV compacto')
+    login_as(user, scope: :user)
+    visit root_path
+    click_on 'Carros'
+    within("tr#car-#{car.id}") do
+      find('.ls-ico-zoomin').click
     end
+    click_on 'Editar'
 
-    scenario 'and must be authenticated to edit' do
-        visit edit_car_category_path(00000)
+    fill_in 'Placa', with: 'ABC1234'
+    fill_in 'Cor', with: 'Branco'
+    fill_in 'Quilometrágem', with: '123456'
+    select 'Kwid', from: 'Modelo do carro'
+    click_on 'Salvar'
 
-        expect(current_path).to eq(new_user_session_path)
-    end
+    expect(page).to have_content('Carro atualizado com sucesso')
+    expect(page).to have_content('ABC1234')
+    expect(page).to have_content('Branco')
+    expect(page).to have_content('123456')
+  end
+
+  scenario 'and must be authenticated to edit' do
+    visit edit_car_category_path(0o0000)
+
+    expect(current_path).to eq(new_user_session_path)
+  end
 end

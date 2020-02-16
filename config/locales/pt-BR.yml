@@ -7,6 +7,20 @@ pt-BR:
       success: 'Filial atualizada com sucesso'
     destroy:
       success: 'Filial deletada com sucesso'
+  cars:
+    create:
+      success: 'Carro registrado com sucesso'
+    update:
+      success: 'Carro atualizado com sucesso'
+    destroy:
+      success: 'Carro deletado com sucesso'
+  rentals:
+    create:
+      success: 'Locação registrada com sucesso'
+    update:
+      success: 'Locação atualizada com sucesso'
+    destroy:
+      success: 'Locação cancelada com sucess'
   manufacturers:
     create:
       success: 'Fabricante registrado com sucesso'

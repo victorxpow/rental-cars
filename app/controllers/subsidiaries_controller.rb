@@ -11,6 +11,14 @@ class SubsidiariesController < ApplicationController
     @subsidiary = Subsidiary.new
   end
 
+  def create
+    @subsidiary = Subsidiary.new(subsidiary_params)
+    return redirect_to @subsidiary, 
+    notice: t('.success') if @subsidiary.save
+
+    render :new
+  end
+
   def edit
     @subsidiary = Subsidiary.find(params[:id])
   end
@@ -23,14 +31,6 @@ class SubsidiariesController < ApplicationController
     render :edit
   end
 
-  def create
-    @subsidiary = Subsidiary.new(subsidiary_params)
-    return redirect_to @subsidiary, 
-    notice: t('.success') if @subsidiary.save
-
-    render :new
-  end
-      
   def destroy
     @subsidiary = Subsidiary.find(params[:id])
     return redirect_to subsidiaries_path,

@@ -22,10 +22,10 @@ feature 'Admin register Car Model' do
 
     expect(page).to have_content('Onix Hatch')
     expect(page).to have_content('2019')
-    expect(page).to have_content( 'Fiat')
-    expect(page).to have_content( '1.4')
-    expect(page).to have_content( 'AM')
-    expect(page).to have_content( 'Flex')
+    expect(page).to have_content('Fiat')
+    expect(page).to have_content('1.4')
+    expect(page).to have_content('AM')
+    expect(page).to have_content('Flex')
   end
 
   scenario 'car year greather than 2013' do

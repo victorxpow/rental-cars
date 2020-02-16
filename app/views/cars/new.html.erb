@@ -1,23 +1,9 @@
-<%= form_with model:@car, local: true do |form| %>
-    <p>
-        <%= form.label :license_plate, 'Placa' %>
-        <%= form.text_field :license_plate %>
-    </p>
+<h1 class="ls-title-intro ls-ico-text">Nova <%= Car.model_name.human(count: 1) %></h1>
 
-    <p>
-        <%= form.label :mileage, 'Quilometragem' %>
-        <%= form.text_field :mileage %>
-    </p>
-
-    <p>
-        <%= form.label :color, 'Cor' %>
-        <%= form.text_field :color %>
-    </p>
-
-    <p>
-        <%= form.label :car_model_id, 'Nome do modelo' %>
-        <%= form.collection_select :car_model_id, @car_models, :id, :name%>
-    </p>
-    <p><%= form.submit 'Enviar' %></p>
+<% if @car.errors.any? %>
+    <% @car.errors.full_messages.each do |msg| %>
+        <%= msg %>
+    <% end %>
 <% end %>
-<%= link_to 'Voltar', cars_path %>
+
+<%= render partial: 'form', locals: { customer: @car } %> 

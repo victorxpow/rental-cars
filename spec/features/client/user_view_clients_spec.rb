@@ -4,7 +4,7 @@ feature 'User view client' do
   scenario 'successfully' do
     user = create(:user)
     client = create(:client)
-    
+
     login_as(user, scope: :user)
     visit root_path
     click_on 'Clientes'
@@ -27,7 +27,7 @@ feature 'User view client' do
   end
 
   scenario 'and must be authenticated to view details' do
-    visit client_path(00000)
+    visit client_path(0o0000)
 
     expect(current_path).to eq(new_user_session_path)
   end

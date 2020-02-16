@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+
 ruby '2.6.3'
 gem 'devise'
 gem 'jquery-rails'
@@ -40,6 +41,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   # RSpec for Rails-3+
   gem 'rspec-rails', '~> 3.9'
+  gem 'simplecov', require: false
 end
 
 group :development do
@@ -53,6 +55,7 @@ end
 group :test do
   # Acceptance test framework for web applications
   gem 'capybara', '~> 3.29'
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

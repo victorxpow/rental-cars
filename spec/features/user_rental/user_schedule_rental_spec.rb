@@ -8,7 +8,7 @@ feature 'User schedule rental' do
     car_category = CarCategory.create!(name: 'AM', daily_rate: 46.54, car_insurance: 28,
                                        third_party_insurance: 10)
     Rental.create!(code: 'VKN0001', start_date: Date.current, end_date: 1.day.from_now,
-                                       client: client, car_category: car_category, user: user)
+                   client: client, car_category: car_category, user: user)
     login_as(user, user: :scope)
     visit root_path
     click_on 'Locações'
@@ -17,7 +17,7 @@ feature 'User schedule rental' do
     fill_in 'Data de início', with: Date.current
     fill_in 'Data de fim', with: 1.day.from_now
     select "#{client.cpf} - #{client.name}", from: 'Cliente'
-    select "AM", from: 'Categoria de carro'
+    select 'AM', from: 'Categoria de carro'
     click_on 'Enviar'
 
     expect(page).to have_css('h1', text: 'Locação')

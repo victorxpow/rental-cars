@@ -7,21 +7,40 @@ class Rental < ApplicationRecord
   has_many :cars, through: :car_rentals
 
 
-  validate :date_init_less_than_final, on: [:new, :create]
-  validate :expiration_date_cannot_be_in_the_past, on: [:new, :create]
+  validate :start_date, :start_date_cannot_be_greater_than_today
+  validate :end_date, :end_date_cannot_be_less_than_start_date
+  validate :available_cars?
 
-  def date_init_less_than_final
-    if start_date.present? && start_date > end_date 
-      errors.add(:start_date, "End date must be after initial date.")
-    end
-  end  
+  def start_date_cannot_be_greater_than_today
+    return unless start_date.present? && start_date > Date.current
 
-  def expiration_date_cannot_be_in_the_past
-    if end_date.present? && end_date < Date.today
-      errors.add(:end_date, "can't be in the past")
-    end
+    errors.add(:start_date, 'Data de início não pode ser maior que hoje')
   end
-  
-end
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+  def end_date_cannot_be_less_than_start_date
+    return unless start_date.present? && end_date.present? &&
+                  end_date < start_date
+
+    errors.add(:end_date, 'Data de início não pode ser maior que a data de '\
+                          'encerramento')
+  end
+
+  def available_cars?
+    available_cars = Car.where(status: :created)
+                        .joins(:car_model)
+                        .where(car_models: { car_category: car_category })
+                        .count
+
+    return if available_cars > scheduled
+
+    errors.add(:base, 'Não há carros disponíveis na data pesquisada')
+  end
+
+  def scheduled
+    Rental.where(car_category: car_category)
+          .where(start_date: start_date..end_date)
+          .or(Rental.where(car_category: car_category)
+          .where(end_date: start_date..end_date))
+          .count
+  end
+end

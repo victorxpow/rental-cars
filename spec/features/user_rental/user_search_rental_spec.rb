@@ -9,9 +9,9 @@ feature 'User search rental' do
                                        third_party_insurance: 10)
     Rental.create!(code: 'VKN0001', start_date: Date.current, end_date: 1.day.from_now,
                    client: client, car_category: car_category, user: user)
-    
+
     login_as(user, scope: :user)
-    
+
     visit root_path
     click_on 'Locações'
     fill_in 'Pesquisar', with: 'VKN0001'
@@ -56,5 +56,4 @@ feature 'User search rental' do
 
     expect(current_path).to eq(new_user_session_path)
   end
-
 end

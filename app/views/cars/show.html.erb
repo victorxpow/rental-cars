@@ -1,14 +1,27 @@
-<h1>Categoria:</h1>
-<% if flash[:alert] %>
-<%= flash[:alert] %>
-<% end %>
-<%= @car.car_model.name %>
-<%= @car.car_model.car_category.name %>
-<%= @car.license_plate %>
-<%= @car.color %>
-<%= @car.mileage %>
+<div class="ls-title-intro ls-ico-text">Carro: <%= Car.human_attribute_name(@car.car_model.name) %></div>
 
-<%= link_to 'Editar', edit_car_path(@car) %>
+<table class="ls-table">
+    <thead>
+      <tr>
+      <th><%= CarModel.human_attribute_name(:name) %></th>
+      <th><%= CarModel.human_attribute_name(:car_category_id) %></th>
+      <th><%= Car.human_attribute_name(:license_plate) %></th>
+      <th><%= Car.human_attribute_name(:color) %></th>
+      <th><%= Car.human_attribute_name(:mileage) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @car.car_model.name %></td>
+      <td><%= @car.car_model.car_category.name %></td>
+      <td><%= @car.license_plate %></td>
+      <td><%= @car.color %></td>
+      <td><%= @car.mileage %></td>
+    </tr>
+  </tbody>
+</table>
 
-<%= link_to 'Deletar', car_path(@car), method: :delete,
-data: {confirm: 'Tem certeza?'} %>
+<%= link_to 'Editar', edit_car_path(@car), class: "ls-btn blue-theme" %>
+<%= link_to 'Deletar', car_path(@car), method: :delete, class: "ls-btn red-delete", data: {confirm: 'Tem certeza?'} %>
+
+<hr>

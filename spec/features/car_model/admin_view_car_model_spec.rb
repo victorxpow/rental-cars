@@ -9,15 +9,15 @@ feature 'Admin view Car Model' do
     visit root_path
     click_on 'Modelos de carro'
     within("tr#car_model-#{car_model.id}") do
-        find('.ls-ico-zoomin').click
-      end
+      find('.ls-ico-zoomin').click
+    end
 
     expect(page).to have_content(car_model.name)
-    expect(page).to have_content("#{car_model.year}")
-    expect(page).to have_content("#{car_model.manufacturer.name}")
-    expect(page).to have_content("#{car_model.motorization}")
-    expect(page).to have_content("#{car_model.car_category.name}")
-    expect(page).to have_content("#{car_model.fuel_type}")
+    expect(page).to have_content(car_model.year.to_s)
+    expect(page).to have_content(car_model.manufacturer.name.to_s)
+    expect(page).to have_content(car_model.motorization.to_s)
+    expect(page).to have_content(car_model.car_category.name.to_s)
+    expect(page).to have_content(car_model.fuel_type.to_s)
   end
   scenario 'and must be authenticated via button' do
     visit root_path

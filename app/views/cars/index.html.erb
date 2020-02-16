@@ -1,10 +1,30 @@
-<h1>Carros</h1>
-<p><%= link_to 'Cadastrar carro', new_car_path %></p>
-<ul>
-<% @cars.each do |car| %>
-    <li><%= link_to car.car_model.name, car %></li>
-    <li><%= car.license_plate %></li>
-    <li><%= car.mileage %></li>
-    <li><%= car.color%></li>
-<% end %>
-</ul>
+<h1 class="ls-title-intro ls-ico-text"><%= Car.model_name.human(count: 2) %></h1>
+<%= link_to 'Registrar Novo', new_car_path, class: 'ls-btn-primary button' %>
+
+<table class="ls-table">
+    <thead>
+      <tr>
+      <th><%= Car.human_attribute_name(:car_model_id) %></th>
+      <th><%= Car.human_attribute_name(:license_plate) %></th>
+      <th><%= Car.human_attribute_name(:mileage) %></th>
+      <th><%= Car.human_attribute_name(:color) %></th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @cars.each do |car| %>
+      <tr id="car-<%= car.id %>">
+        <td><%= car.car_model.name %></td>
+        <td><%= car.license_plate %></td>
+        <td><%= car.mileage %></td>
+        <td><%= car.color %></td>
+        <td>
+          <%= link_to '', car_path(car), class: "ls-ico-zoomin" %>
+          <%= link_to '', edit_car_path(car), class: "ls-ico-pencil" %>
+          <%= link_to '', car_path(car), method: :delete, class: "ls-ico-remove",
+          data: { confirm: "Tem certeza de que deseja deletar #{car.car_model.name}?"} %>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>

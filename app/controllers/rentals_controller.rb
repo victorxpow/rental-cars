@@ -1,11 +1,12 @@
 class RentalsController < ApplicationController
-  def index
-  end
+  def index; end
+
   def new
     @rental = Rental.new
     @clients = Client.all
     @car_category = CarCategory.all
   end
+
   def search
     @rentals = Rental.where('code LIKE ?', "%#{params[:q].upcase}%")
     
@@ -38,6 +39,26 @@ class RentalsController < ApplicationController
     @car_rental = CarRental.create!(rental: @rental, car: @car,
                       daily_rate: @car.car_model.car_category.daily_rated,
                       start_mileage: @car.mileage)
+  end
+
+  def edit
+    @rental = Rental.find(params[:id])
+  end
+
+  def update
+    @rental = Rental.find(params[:id])
+    return redirect_to @rental,
+    notice: t('.success') if @rental.update(rental_params)
+
+    render :edit
+  end
+
+  def destroy
+    @rental = Rental.find(params[:id])
+    return redirect_to rentals_path,
+    notice: t('.success') if @rental.destroy
+
+    render :show
   end
 
   private

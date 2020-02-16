@@ -32,8 +32,7 @@ feature 'User sign in' do
     within 'div#dropdw' do
       click_on 'Sair'
     end
-      
-      
+
     expect(page).not_to have_link('Sair')
     expect(page).to have_button('Entrar')
     expect(current_path).to eq(new_user_session_path)

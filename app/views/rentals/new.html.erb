@@ -1,16 +1,9 @@
-<h1>Nova locação</h1>
-<%= form_for @rental do |form| %>
-  <%= form.label :start_date, 'Data de início' %>
-  <%= form.date_field :start_date %>
+<h1 class="ls-title-intro ls-ico-text">Nova <%= Rental.model_name.human(count: 1) %></h1>
 
-  <%= form.label :end_date, 'Data de fim' %>
-  <%= form.date_field :end_date %>
-
-  <%= form.label :client_id, 'Cliente'%>
-  <%= form.collection_select :client_id, @clients, :id, :identification%>
-
-  <%= form.label :car_category_id, 'Categoria de carro' %>
-  <%= form.collection_select :car_category_id, @car_category, :id, :name%>
-
-  <%= form.submit 'Enviar' %>
+<% if @rental.errors.any? %>
+    <% @rental.errors.full_messages.each do |msg| %>
+        <%= msg %>
+    <% end %>
 <% end %>
+
+<%= render partial: 'form', locals: { customer: @rental } %> 

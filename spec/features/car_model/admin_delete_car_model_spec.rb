@@ -12,7 +12,7 @@ feature 'Admin delete car model' do
       find('.ls-ico-zoomin').click
     end
     click_on 'Deletar'
-    
+
     expect(page).to have_content('Modelo do carro deletado com sucesso')
     expect(page).to_not have_content(car_model)
     expect(page).to_not have_content(car_model.name)
