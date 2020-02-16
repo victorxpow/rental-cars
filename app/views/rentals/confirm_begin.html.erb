@@ -1,12 +1,27 @@
-<h1>Locação - <%= @car_rental.rental.code %></h1>
+<h1 class="ls-title-intro ls-ico-text">Locação - <%= CarRental.human_attribute_name(@rental.code) %></h1>
+<span class="ls-tag"><div class="status">Status: <%= CarRental.human_attribute_name(@car_rental.car.status) %></div></span>
+<table class="ls-table">
+  <thead>
+    <tr>
+      <th><%= Client.human_attribute_name(:name) %></th>
+      <th><%= Rental.human_attribute_name(:start_date) %></th>
+      <th><%= Rental.human_attribute_name(:end_date) %></th>
+      <th><%= Car.human_attribute_name(:name) %></th>
+      <th><%= Car.human_attribute_name(:mileage) %></th>
+      <th><%= CarCategory.human_attribute_name(:daily_rate) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @car_rental.rental.client.name %>
+      <td><%= l @rental.start_date, format: :default %></td>
+      <td><%= l @rental.end_date, format: :default %></td>
+      <td><%= @car_rental.car.full_description %></td>
+      <td><%= @car_rental.start_mileage %></td>
+      <td><%= @car_rental.daily_rate %></td>
+    </tr>
+  </tbody>
+</table>
 
-<section>
-<p>Iniciado com sucesso</p>
-<p>Carro:
-<%= "#{@car_rental.car.full_description}" %>
-</p>
-<p>Client: <%= @car_rental.rental.client.name %></p>
-<p>Usuário: <%= @car_rental.rental.user.email %></p>
-<p>Quilometragem: <%= @car_rental.start_mileage %></p>
-<p>Valor total: <%= @car_rental.daily_rate %></p>
-</section>
+<%= link_to 'Voltar', url_for(:back), class:"ls-btn" %>
+<hr>

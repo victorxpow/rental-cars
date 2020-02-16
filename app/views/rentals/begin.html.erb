@@ -1,12 +1,32 @@
-<% if @cars.empty? %>
-n tem carro
-<% else %>
-<h1>Selecionar o carro</h1>
+<% if @cars.any? %>
+<h1 class="ls-title-intro ls-ico-text">Selecionar <%= Car.model_name.human(count: 1) %></h1>
+<%= link_to 'Registrar Novo', new_car_path, class: 'ls-btn-primary button' %>
 
-<% @cars.each do |car| %>
-<div id="div-<%= "#{car.id}" %>">
-  <%= "#{car.car_model.manufacturer.name} #{car.car_model.name} - #{car.license_plate} - #{car.color}" %>
-  <%= link_to 'Iniciar', begin_rental_path(car.id), method: :post %>
-</div>
-<% end %>
+<table class="ls-table">
+    <thead>
+      <tr>
+      <th><%= Car.human_attribute_name(:manufacturer_id) %></th>
+      <th><%= Car.human_attribute_name(:car_model_id) %></th>
+      <th><%= Car.human_attribute_name(:license_plate) %></th>
+      <th><%= Car.human_attribute_name(:color) %></th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @cars.each do |car| %>
+      <tr id="car-<%= car.id %>">
+        <td><%= car.car_model.manufacturer.name %></td>
+        <td><%= car.car_model.name %></td>
+        <td><%= car.license_plate %></td>
+        <td><%= car.color %></td>
+        <td>
+          <%= link_to 'Confirmar', begin_rental_path(car.id), method: :post, class: "ls-btn-primary ls-ico-checkmark"  %>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
+          <%= link_to 'Voltar', url_for(:back), class:"ls-btn" %>
+<% else %>
+<p>Não há carros disponíveis</p>
 <% end %>

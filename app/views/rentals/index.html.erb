@@ -1,9 +1,11 @@
-<h1>Locações</h1>
-<%= link_to 'Agendar locação', new_rental_path %>
-<section>
-  <%= form_tag search_rentals_path, method: 'get' do %>
-    <%= label_tag :q, 'Pesquisar' %>
-    <%= text_field_tag :q %>
-    <%= submit_tag 'Buscar'%>
+<h1 class="ls-title-intro ls-ico-users"><%= Rental.model_name.human(count: 2) %></h1>
+
+<%= link_to 'Registrar Novo', new_rental_path, class: 'ls-btn-primary' %>
+
+<div class="ls-box-filter">
+  <%= form_tag search_rentals_path, method: 'get', class: "ls-form ls-form-inline ls-float-right" do %>
+    <%= label_tag :q, 'Pesquisar', class: "ls-label-text ls-hidden-accessible" %>
+    <%= text_field_tag :q, nil, placeholder: "Codigo de Locação" %>
+    <%= submit_tag 'Buscar', class: "ls-btn ls-btn-sm" %>
   <% end %>
-</section>
+</div>

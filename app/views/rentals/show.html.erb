@@ -1,8 +1,27 @@
-<h1>Locação</h1>
+<h1 class="ls-title-intro ls-ico-text"><%= Subsidiary.model_name.human(count: 2) %></h1>
+<table class="ls-table">
+  <thead>
+    <tr>
+      <th><%= Rental.human_attribute_name(:code) %></th>
+      <th><%= Rental.human_attribute_name(:start_date) %></th>
+      <th><%= Rental.human_attribute_name(:end_date) %></th>
+      <th><%= Client.human_attribute_name(:name) %></th>
+      <th><%= Client.human_attribute_name(:cpf) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @rental.code %></td>
+      <td><%= l @rental.start_date, format: :default %></td>
+      <td><%= l @rental.end_date, format: :default %></td>
+      <td><%= @rental.client.name %></td>
+      <td><%= @rental.client.cpf %></td>
+    </tr>
+  </tbody>
+</table>
 
-Código: <%= @rental.code %>
-Data de início: <%= @rental.start_date.strftime('%d/%m/%y') %>
-Data de fim: <%= @rental.end_date.strftime('%d/%m/%y') %>
-Nome: <%= @rental.client.name %>
-Nome: <%= @rental.client.cpf %>
-Categoria de carro: <%= @rental.car_category.name %>
+<%= link_to 'Editar', edit_rental_path(@rental), class: "ls-btn blue-theme" %>
+<%= link_to 'Cancelar', rental_path(@rental), method: :delete, class: "ls-btn red-delete",
+data: { confirm: "Tem certeza de que deseja deletar #{@rental.code}?"} %>
+<%= link_to 'Voltar', url_for(:back), class:"ls-btn" %>
+<hr>

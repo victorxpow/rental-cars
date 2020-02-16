@@ -1,10 +1,35 @@
-<h1>Locações</h1>
-<section>
-  <% @rentals.each do |rental| %>
-    <p>Código: <%= link_to rental.code, begin_rental_path(rental.id) %></p>
-    <p>Data de início: <%= rental.start_date.strftime('%d/%m/%y') %></p>
-    <p>Data de fim: <%= rental.end_date.strftime('%d/%m/%y') %></p>
-    <p>Cliente: <%= rental.client.name %></p>
-    <p>Categoria de carro: <%= rental.car_category.name %></p>
-  <% end%>
-</section>
+<% if @rentals.any? %>
+<h1 class="ls-title-intro ls-ico-text"><%= Rental.model_name.human(count: 2) %></h1>
+<%= link_to 'Registrar Novo', new_rental_path, class: 'ls-btn-primary button' %>
+
+<table class="ls-table">
+    <thead>
+      <tr>
+      <th><%= Rental.human_attribute_name(:code) %></th>
+      <th><%= Rental.human_attribute_name(:start_date) %></th>
+      <th><%= Rental.human_attribute_name(:end_date) %></th>
+      <th><%= Rental.human_attribute_name(:client_id) %></th>
+      <th><%= Rental.human_attribute_name(:car_category_id) %></th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @rentals.each do |rental| %>
+      <tr id="rental-<%= rental.id %>">
+        <td><%= rental.code %></td>
+        <td><%= l rental.start_date, format: :default %></td>
+        <td><%= l rental.end_date, format: :default %></td>
+        <td><%= rental.client.name %></td>
+        <td><%= rental.car_category.name %></td>
+        <td>
+          <%= link_to 'Agendar', begin_rental_path(rental.id), class: "ls-btn-primary ls-ico-checkmark"  %>
+          <%= link_to 'Detalhes', rental_path(rental), class: "ls-btn red-delete"  %>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
+<%= link_to 'Voltar', url_for(:back), class:"ls-btn" %>
+<% else %>
+<p>Não há locações registradas</p>
+<%   end %>

@@ -43,7 +43,7 @@ pt-BR:
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
     models:
-      car_rentals: Locação Efetivada
+      car_rental: Selecionar Carro
       user:
         one: 'Usúario'
         other: 'Usúarioes'
@@ -53,7 +53,7 @@ pt-BR:
       subsidiary:
         one: 'Filial'
         other: 'Filiais'
-      rentals:
+      rental:
         one: 'Locação'
         other: 'Locações'
       car_model:
@@ -69,8 +69,8 @@ pt-BR:
         one: 'Cliente'
         other: 'Clientes'
     attributes:
-      car_rentals:
-        car_id: ID do Carro
+      car_rental:
+        car_id: C
         rental_id: ID da Locação
         daily_rate: Preço Total
         start_mileage: Quilometrágem Inícial
@@ -86,12 +86,12 @@ pt-BR:
         name: Nome
         cnpj: CNPJ
         address: Endereço
-      rentals:
+      rental:
         code: Código
         start_date: Data Início
         end_date: Data Retorno
-        client_id: ID do Cliente
-        car_category_id: ID da Categoria
+        client_id: Nome Cliente
+        car_category_id: Categoria do carro
         user_id: ID do Usuário
       car_model:
         name: Nome
@@ -109,7 +109,8 @@ pt-BR:
         license_plate: Placa do Carro
         color: Cor do Carro
         mileage: Quilometrágem
-        car_model_id: ID do Modelo
+        car_model_id: Modelo do carro 
+        manufacturer_id: Fabricante
         status: Status
       client:
         name: Nome
