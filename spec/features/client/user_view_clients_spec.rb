@@ -2,16 +2,16 @@ require 'rails_helper'
 
 feature 'User view client' do
   scenario 'successfully' do
-    user = User.create!(email: 'teste@teste.com', password: '123456')
-    Client.create!(name: 'Victor', cpf: '000.000.000-00', email: 'teste@gmail.com')
+    user = create(:user)
+    client = create(:client)
+    
     login_as(user, scope: :user)
     visit root_path
-
     click_on 'Clientes'
 
-    expect(page).to have_content('Victor')
-    expect(page).to have_content('000.000.000-00')
-    expect(page).to have_content('teste@gmail.com')
+    expect(page).to have_content(client.name)
+    expect(page).to have_content(client.cpf)
+    expect(page).to have_content(client.email)
   end
 
   scenario 'and must be authenticated via button' do

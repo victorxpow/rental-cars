@@ -28,6 +28,13 @@ pt-BR:
       success: 'Modelo do carro atualizado com sucesso'
     destroy:
       success: 'Modelo do carro deletado com sucesso'
+  clients:
+    create:
+      success: 'Cliente registrado com sucesso'
+    update:
+      success: 'Cliente atualizado com sucesso'
+    destroy:
+      success: 'Cliente deletado com sucesso'
   activerecord:
     errors:
       messages:

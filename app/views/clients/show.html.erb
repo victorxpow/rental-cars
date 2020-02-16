@@ -1,3 +1,23 @@
-<%= @client.name %>
-<%= @client.cpf %>
-<%= @client.email %>
+<div class="ls-title-intro ls-ico-text">Cliente: <%= Client.human_attribute_name(@client.name) %></div>
+
+<table class="ls-table">
+    <thead>
+      <tr>
+      <th><%= Client.human_attribute_name(:name) %></th>
+      <th><%= Client.human_attribute_name(:cpf) %></th>
+      <th><%= Client.human_attribute_name(:email) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @client.name %></td>
+      <td><%= @client.cpf %></td>
+      <td><%= @client.email %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to 'Editar', edit_client_path(@client), class: "ls-btn blue-theme" %>
+<%= link_to 'Deletar', client_path(@client), method: :delete, class: "ls-btn red-delete", data: {confirm: 'Tem certeza?'} %>
+
+<hr>

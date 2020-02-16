@@ -19,6 +19,26 @@ class ClientsController < ApplicationController
     render :new
   end
 
+  def edit
+    @client = Client.find(params[:id])
+  end
+
+  def update
+    @client = Client.find(params[:id])
+    return redirect_to @client,
+    notice: t('.success') if @client.update(client_params)
+
+    render :edit
+  end
+
+  def destroy
+    @client = Client.find(params[:id])
+    return redirect_to clients_path,
+    notice: t('.success') if @client.destroy
+
+    redirect_to :show
+  end
+
   private
 
   def client_params

@@ -1,9 +1,28 @@
-<h1>Clientes</h1>
-<%= link_to 'Registrar cliente', new_client_path %>
-<ul>
-<% @clients.each do |client| %>
-  <li><%= link_to client.name, client %></li>
-  <li><%= client.cpf %></li>
-  <li><%= client.email %></li>
-<% end %>
-</ul>
+<h1 class="ls-title-intro ls-ico-text"><%= Client.model_name.human(count: 2) %></h1>
+<%= link_to 'Registrar Novo', new_client_path, class: 'ls-btn-primary button' %>
+
+<table class="ls-table">
+    <thead>
+      <tr>
+      <th><%= Client.human_attribute_name(:name) %></th>
+      <th><%= Client.human_attribute_name(:cpf) %></th>
+      <th><%= Client.human_attribute_name(:email) %></th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @clients.each do |client| %>
+      <tr id="client-<%= client.id %>">
+        <td><%= client.name %></td>
+        <td><%= client.cpf %></td>
+        <td><%= client.email %></td>
+        <td>
+          <%= link_to '', client_path(client), class: "ls-ico-zoomin" %>
+          <%= link_to '', edit_client_path(client), class: "ls-ico-pencil" %>
+          <%= link_to '', client_path(client), method: :delete, class: "ls-ico-remove",
+          data: { confirm: "Tem certeza de que deseja deletar #{client.name}?"} %>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
