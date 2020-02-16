@@ -102,8 +102,8 @@ pt-BR:
         address: Endereço
       rental:
         code: Código
-        start_date: Data Início
-        end_date: Data Retorno
+        start_date: Data de início
+        end_date: Data de Retorno
         client_id: Nome Cliente
         car_category_id: Categoria do carro
         user_id: ID do Usuário

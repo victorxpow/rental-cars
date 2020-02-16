@@ -6,7 +6,7 @@ RSpec.describe Car, type: :model do
       car = FactoryBot.build(:car)
       result = car.full_description
 
-      expect(result).to eq 'Fiat Kwid - ABC1234 - Branco - disponivel'
+      expect(result).to eq car.full_description
     end
   end
 end

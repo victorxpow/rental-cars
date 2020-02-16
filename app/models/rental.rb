@@ -5,7 +5,8 @@ class Rental < ApplicationRecord
 
   has_many :car_rentals
   has_many :cars, through: :car_rentals
-
+  
+  validates :start_date, :end_date, presence: true
 
   validate :start_date, :start_date_cannot_be_greater_than_today
   validate :end_date, :end_date_cannot_be_less_than_start_date
@@ -26,7 +27,7 @@ class Rental < ApplicationRecord
   end
 
   def available_cars?
-    available_cars = Car.where(status: :created)
+    available_cars = Car.where(status: :disponivel)
                         .joins(:car_model)
                         .where(car_models: { car_category: car_category })
                         .count
