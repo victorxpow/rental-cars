@@ -5,6 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def nickname
-    "#{email[/[^@]+/]}"
+    email[/[^@]+/].to_s
   end
 end

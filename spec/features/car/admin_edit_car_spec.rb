@@ -25,6 +25,29 @@ feature 'Admin edit Car' do
     expect(page).to have_content('123456')
   end
 
+  scenario 'must fill all fields' do
+    user = create(:user)
+    car = create(:car)
+
+    login_as(user, scope: :user)
+    visit root_path
+    click_on 'Carros'
+    within("tr#car-#{car.id}") do
+      find('.ls-ico-zoomin').click
+    end
+    click_on 'Editar'
+
+    fill_in 'Placa', with: ''
+    fill_in 'Cor', with: ''
+    fill_in 'Quilometrágem', with: ''
+    select 'Kwid', from: 'Modelo do carro'
+    click_on 'Salvar'
+
+    expect(page).to have_content('Placa do Carro não pode ficar em branco')
+    expect(page).to have_content('Cor do Carro não pode ficar em branco')
+    expect(page).to have_content('Quilometrágem não pode ficar em branco')
+  end
+
   scenario 'and must be authenticated to edit' do
     visit edit_car_category_path(0o0000)
 

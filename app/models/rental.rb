@@ -1,29 +1,28 @@
 class Rental < ApplicationRecord
   belongs_to :client
   belongs_to :car_category
-  belongs_to :user                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+  belongs_to :user
 
-  has_many :car_rentals
+  has_many :car_rentals, dependent: :destroy
   has_many :cars, through: :car_rentals
-  
+
   validates :start_date, :end_date, presence: true
 
-  validate :start_date, :start_date_cannot_be_greater_than_today
+  validate :start_date, :start_date_cannot_be_in_the_past
   validate :end_date, :end_date_cannot_be_less_than_start_date
   validate :available_cars?
 
-  def start_date_cannot_be_greater_than_today
-    return unless start_date.present? && start_date > Date.current
+  def start_date_cannot_be_in_the_past
+    return unless start_date.present? && start_date < Date.current
 
-    errors.add(:start_date, 'Data de início não pode ser maior que hoje')
+    errors.add(:start_date, 'está incorreta, não alugamos DeLoreans')
   end
 
   def end_date_cannot_be_less_than_start_date
     return unless start_date.present? && end_date.present? &&
                   end_date < start_date
 
-    errors.add(:end_date, 'Data de início não pode ser maior que a data de '\
-                          'encerramento')
+    errors.add(:end_date, 'não pode ser antes da Data Inicial')
   end
 
   def available_cars?

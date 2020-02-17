@@ -20,7 +20,7 @@ pt-BR:
     update:
       success: 'Locação atualizada com sucesso'
     destroy:
-      success: 'Locação cancelada com sucess'
+      success: 'Locação cancelada com sucesso'
   manufacturers:
     create:
       success: 'Fabricante registrado com sucesso'

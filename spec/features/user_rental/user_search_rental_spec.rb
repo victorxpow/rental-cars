@@ -5,15 +5,15 @@ feature 'User search rental' do
     user = create(:user)
     manufacturer = create(:manufacturer)
     car_category = create(:car_category, name: 'AM', daily_rate: 46.54, car_insurance: 28,
-                                        third_party_insurance: 10)
+                                         third_party_insurance: 10)
     car_model = create(:car_model, name: 'Kwid', year: '2020', manufacturer: manufacturer,
-                                  motorization: '1.0', car_category: car_category,
-                                  fuel_type: 'Flex')
+                                   motorization: '1.0', car_category: car_category,
+                                   fuel_type: 'Flex')
     client = create(:client)
     car = create(:car, license_plate: 'ABC1234', color: 'Branco', car_model: car_model,
-                mileage: 10.000, status: 0)
-    rental = create(:rental, code: 'VKN0001', start_date: Date.current, end_date: 2.day.from_now,
-                  client: client, car_category: car_category, user: user)
+                       mileage: 10.000, status: 0)
+    rental = create(:rental, code: 'VKN0001', start_date: Date.current, end_date: 2.days.from_now,
+                             client: client, car_category: car_category, user: user)
 
     login_as(user, scope: :user)
 
@@ -27,7 +27,7 @@ feature 'User search rental' do
     expect(page).to have_content('Data de início')
     expect(page).to have_content(Date.current.strftime('%d/%m/%Y'))
     expect(page).to have_content('Data de Retorno')
-    expect(page).to have_content(2.day.from_now.strftime('%d/%m/%Y'))
+    expect(page).to have_content(2.days.from_now.strftime('%d/%m/%Y'))
     expect(page).to have_content('Cliente')
     expect(page).to have_content(client.name)
     expect(page).to have_content('Categoria do carro')
@@ -38,20 +38,20 @@ feature 'User search rental' do
     user = create(:user)
     manufacturer = create(:manufacturer)
     car_category = create(:car_category, name: 'AM', daily_rate: 46.54, car_insurance: 28,
-                                        third_party_insurance: 10)
+                                         third_party_insurance: 10)
     car_model = create(:car_model, name: 'Kwid', year: '2020', manufacturer: manufacturer,
-                                  motorization: '1.0', car_category: car_category,
-                                  fuel_type: 'Flex')
+                                   motorization: '1.0', car_category: car_category,
+                                   fuel_type: 'Flex')
     client = create(:client)
     car = create(:car, license_plate: 'ABC1234', color: 'Branco', car_model: car_model,
-                mileage: 10.000, status: 0)
+                       mileage: 10.000, status: 0)
     create(:car, license_plate: 'DEF5678', color: 'Azul', car_model: car_model,
-                  mileage: 10_000, status: 0)
-    rental = create(:rental, code: 'VKN0001', start_date: Date.current, end_date: 2.day.from_now,
-                  client: client, car_category: car_category, user: user)
+                 mileage: 10_000, status: 0)
+    rental = create(:rental, code: 'VKN0001', start_date: Date.current, end_date: 2.days.from_now,
+                             client: client, car_category: car_category, user: user)
 
     other_rental = create(:rental, code: 'VKN0002', start_date: Date.current, end_date: 1.day.from_now,
-                   client: client, car_category: car_category, user: user)
+                                   client: client, car_category: car_category, user: user)
 
     login_as(user, scope: :user)
 

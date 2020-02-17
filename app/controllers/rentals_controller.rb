@@ -9,7 +9,6 @@ class RentalsController < ApplicationController
 
   def search
     @rentals = Rental.where('code LIKE ?', "%#{params[:q].upcase}%")
-    
   end
   
   def create
@@ -43,6 +42,7 @@ class RentalsController < ApplicationController
 
   def edit
     @rental = Rental.find(params[:id])
+    load_client_and_category
   end
 
   def update
@@ -50,6 +50,7 @@ class RentalsController < ApplicationController
     return redirect_to @rental,
     notice: t('.success') if @rental.update(rental_params)
 
+    load_client_and_category
     render :edit
   end
 
@@ -58,6 +59,7 @@ class RentalsController < ApplicationController
     return redirect_to rentals_path,
     notice: t('.success') if @rental.destroy
 
+    load_client_and_category
     render :show
   end
 
@@ -66,5 +68,10 @@ class RentalsController < ApplicationController
   def rental_params
     params.require(:rental).permit(:start_date, :end_date, 
                                    :client_id, :car_category_id)
+  end
+
+  def load_client_and_category
+    @clients = Client.all
+    @car_category = CarCategory.all
   end
 end

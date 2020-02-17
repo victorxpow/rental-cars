@@ -5,13 +5,13 @@ feature 'User schedule rental' do
     user = create(:user)
     manufacturer = create(:manufacturer)
     car_category = create(:car_category, name: 'LM', daily_rate: 46.54, car_insurance: 28,
-                                        third_party_insurance: 10)
+                                         third_party_insurance: 10)
     car_model = create(:car_model, name: 'Kwid', year: '2020', manufacturer: manufacturer,
-                                  motorization: '1.0', car_category: car_category,
-                                  fuel_type: 'Flex')
+                                   motorization: '1.0', car_category: car_category,
+                                   fuel_type: 'Flex')
     client = create(:client)
     car = create(:car, license_plate: 'ABC1234', color: 'Branco', car_model: car_model,
-                mileage: 10.000, status: 0)
+                       mileage: 10.000, status: 0)
 
     login_as(user, user: :scope)
     visit root_path
@@ -35,13 +35,13 @@ feature 'User schedule rental' do
     user = create(:user)
     manufacturer = create(:manufacturer)
     car_category = create(:car_category, name: 'LM', daily_rate: 46.54, car_insurance: 28,
-                                        third_party_insurance: 10)
+                                         third_party_insurance: 10)
     car_model = create(:car_model, name: 'Kwid', year: '2020', manufacturer: manufacturer,
-                                  motorization: '1.0', car_category: car_category,
-                                  fuel_type: 'Flex')
+                                   motorization: '1.0', car_category: car_category,
+                                   fuel_type: 'Flex')
     client = create(:client)
     car = create(:car, license_plate: 'ABC1234', color: 'Branco', car_model: car_model,
-                mileage: 10.000, status: 0)
+                       mileage: 10.000, status: 0)
 
     login_as(user, user: :scope)
     visit root_path
@@ -55,6 +55,82 @@ feature 'User schedule rental' do
     click_on 'Salvar'
 
     expect(page).to have_content('não pode ficar em branco')
+  end
+
+  scenario 'and must have a car' do
+    user = create(:user)
+    manufacturer = create(:manufacturer)
+    car_category = create(:car_category, name: 'LM', daily_rate: 46.54, car_insurance: 28,
+                                         third_party_insurance: 10)
+    car_model = create(:car_model, name: 'Kwid', year: '2020', manufacturer: manufacturer,
+                                   motorization: '1.0', car_category: car_category,
+                                   fuel_type: 'Flex')
+    client = create(:client)
+
+    login_as(user, user: :scope)
+    visit root_path
+    click_on 'Locações'
+    click_on 'Registrar Novo'
+
+    fill_in 'Data de início', with: Date.current
+    fill_in 'Data de Retorno', with: 1.day.from_now
+    select "#{client.cpf} - #{client.name}", from: 'Cliente'
+    select 'LM', from: 'Categoria do carro'
+    click_on 'Salvar'
+
+    expect(page).to have_content('Não há carros disponíveis na data pesquisada')
+  end
+
+  scenario 'and the start date cant be in the past' do
+    user = create(:user)
+    manufacturer = create(:manufacturer)
+    car_category = create(:car_category, name: 'LM', daily_rate: 46.54, car_insurance: 28,
+                                         third_party_insurance: 10)
+    car_model = create(:car_model, name: 'Kwid', year: '2020', manufacturer: manufacturer,
+                                   motorization: '1.0', car_category: car_category,
+                                   fuel_type: 'Flex')
+    client = create(:client)
+    car = create(:car, license_plate: 'ABC1234', color: 'Branco', car_model: car_model,
+                       mileage: 10.000, status: 0)
+
+    login_as(user, user: :scope)
+    visit root_path
+    click_on 'Locações'
+    click_on 'Registrar Novo'
+
+    fill_in 'Data de início', with: 1.day.ago
+    fill_in 'Data de Retorno', with: 1.day.from_now
+    select "#{client.cpf} - #{client.name}", from: 'Cliente'
+    select 'LM', from: 'Categoria do carro'
+    click_on 'Salvar'
+
+    expect(page).to have_content('Data de início está incorreta, não alugamos DeLoreans')
+  end
+
+  scenario 'and the start date have to be greather than end date' do
+    user = create(:user)
+    manufacturer = create(:manufacturer)
+    car_category = create(:car_category, name: 'LM', daily_rate: 46.54, car_insurance: 28,
+                                         third_party_insurance: 10)
+    car_model = create(:car_model, name: 'Kwid', year: '2020', manufacturer: manufacturer,
+                                   motorization: '1.0', car_category: car_category,
+                                   fuel_type: 'Flex')
+    client = create(:client)
+    car = create(:car, license_plate: 'ABC1234', color: 'Branco', car_model: car_model,
+                       mileage: 10.000, status: 0)
+
+    login_as(user, user: :scope)
+    visit root_path
+    click_on 'Locações'
+    click_on 'Registrar Novo'
+
+    fill_in 'Data de início', with: 1.day.from_now
+    fill_in 'Data de Retorno', with: 1.day.ago
+    select "#{client.cpf} - #{client.name}", from: 'Cliente'
+    select 'LM', from: 'Categoria do carro'
+    click_on 'Salvar'
+
+    expect(page).to have_content('Data de Retorno não pode ser antes da Data Inicial')
   end
 
   scenario 'and must be authenticated to register' do
